@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">iCab</string>
+    <string name="order_taxt">Order taxi</string>
+    <string name="common_error">Unexpected error was occurred</string>
+</resources>

@@ -1,12 +1,11 @@
 package com.shadiz.android.icab.business.main;
 
-import com.shadiz.android.icab.data.network.models.response.main.CarModel;
+
 import com.shadiz.android.icab.data.network.models.response.main.DriverModel;
 import com.shadiz.android.icab.data.repositories.MainRepository;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * Created on 28.01.2017.

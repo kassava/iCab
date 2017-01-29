@@ -32,8 +32,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:support-annotations:23.3.0'
+    // tests
     testCompile 'junit:junit:4.12'
-
+    testCompile 'org.mockito:mockito-core:2.0.5-beta'
+    // AssertJ
+    testCompile "org.assertj:assertj-core:3.0.0"
+    // robolectric
+    testCompile "org.robolectric:robolectric:3.1-rc1"
+    testCompile "org.robolectric:shadows-support-v4:3.1-rc1"
     // Rx
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'

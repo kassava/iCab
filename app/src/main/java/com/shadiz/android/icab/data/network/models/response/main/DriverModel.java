@@ -2,6 +2,8 @@ package com.shadiz.android.icab.data.network.models.response.main;
 
 import android.support.annotation.Nullable;
 
+import com.shadiz.android.icab.utils.rx.RxBus;
+
 /**
  * Created on 28.01.2017.
  */

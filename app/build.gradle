@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 23
@@ -49,4 +50,10 @@ dependencies {
     provided 'org.glassfish:javax.annotation:10.0-b28'
     // RxBinding
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    // google maps
+    compile 'com.google.android.gms:play-services-gcm:7.5.0'
+    compile 'com.google.android.gms:play-services-base:7.5.0'
+    compile 'com.google.android.gms:play-services-location:7.5.0'
+    // realm
+
 }

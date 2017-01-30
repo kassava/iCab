@@ -2,7 +2,7 @@ package com.shadiz.android.icab.business.main;
 
 import com.shadiz.android.icab.data.network.models.response.main.CarModel;
 import com.shadiz.android.icab.data.network.models.response.main.DriverModel;
-import com.shadiz.android.icab.data.repositories.MainRepository;
+import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 
 import org.junit.Before;

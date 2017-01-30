@@ -1,5 +1,4 @@
-package com.shadiz.android.icab.data.repositories;
-
+package com.shadiz.android.icab.data.repositories.main;
 
 import com.shadiz.android.icab.data.network.models.response.main.DriverModel;
 
@@ -12,4 +11,5 @@ import rx.Observable;
 public interface MainRepository {
 
     Observable<DriverModel> getDrivers();
+
 }

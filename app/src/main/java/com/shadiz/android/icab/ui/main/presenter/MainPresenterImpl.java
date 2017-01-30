@@ -3,7 +3,6 @@ package com.shadiz.android.icab.ui.main.presenter;
 import android.support.annotation.NonNull;
 
 import com.shadiz.android.icab.business.main.MainInteractor;
-import com.shadiz.android.icab.business.main.MainInteractorImpl;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.ui.main.views.MainView;
 import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;

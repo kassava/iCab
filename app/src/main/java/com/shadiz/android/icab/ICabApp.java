@@ -8,6 +8,9 @@ import com.shadiz.android.icab.dagger.application.AppComponent;
 import com.shadiz.android.icab.dagger.application.AppModule;
 import com.shadiz.android.icab.dagger.application.DaggerAppComponent;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created on 28.01.2017.
  */
@@ -26,6 +29,13 @@ public class ICabApp extends Application {
     public void onCreate() {
         super.onCreate();
         appComponent = prepareAppComponent().build();
+    }
+
+    private void initRealm() {
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().build();
+        Realm.deleteRealm(config);
+        Realm.setDefaultConfiguration(config);
     }
 
     @NonNull

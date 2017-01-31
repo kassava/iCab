@@ -29,6 +29,7 @@ public class ICabApp extends Application {
     public void onCreate() {
         super.onCreate();
         appComponent = prepareAppComponent().build();
+        initRealm();
     }
 
     private void initRealm() {

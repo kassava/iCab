@@ -3,6 +3,11 @@ package com.shadiz.android.icab.data.repositories;
 import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.shadiz.android.icab.data.realm.models.RealmClientModel;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created on 30.01.2017.
@@ -16,12 +21,28 @@ public class RealmRepo extends BaseRepository {
 
     @Override
     public void removeClientObject() {
-
+        // TODO: check this behaviour
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        RealmQuery<RealmClientModel> query = realm.where(RealmClientModel.class);
+        RealmResults<RealmClientModel> results = query.findAll();
+        results.deleteFirstFromRealm();
+        realm.commitTransaction();
     }
 
     @Override
     public void resetClientStartInfo() {
-
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        RealmClientModel client = realm.where(RealmClientModel.class).findFirst();
+        client.setMapPickupTime("");
+        client.setMapStartPointPostLat("");
+        client.setMapStartPointPostLon("");
+        client.setMapStartPointPostGeocode("");
+        client.setMapEndPointPostLat("");
+        client.setMapEndPointPostLon("");
+        client.setMapEndPointPostGeocode("");
+        realm.commitTransaction();
     }
 
     @Override

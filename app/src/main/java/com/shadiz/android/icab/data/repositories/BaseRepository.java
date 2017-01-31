@@ -52,7 +52,7 @@ public abstract class BaseRepository {
     public static final String PREF_FILTER_DISTANCE = "pref_filter_distance";
     public static final String PREF_FILTER_RAD = "pref_filter_rad";
 
-    // Client object field names
+    // RealmClientModel object field names
     public static final String MAP_LAST_ACTION_TYPE = "map_client_action_type";
     public static final String MAP_ORDER_TYPE = "map_client_order_type";
     public static final String MAP_SELECTED_DRIVER = "map_client_selected_driver";

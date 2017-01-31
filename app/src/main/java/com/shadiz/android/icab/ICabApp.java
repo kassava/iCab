@@ -18,7 +18,7 @@ import io.realm.RealmConfiguration;
 public class ICabApp extends Application {
 
     @NonNull
-    private AppComponent appComponent;
+    private static AppComponent appComponent;
 
     @NonNull
     public static ICabApp get(@NonNull Context context) {
@@ -45,7 +45,7 @@ public class ICabApp extends Application {
     }
 
     @NonNull
-    public AppComponent applicationComponent() {
+    public static AppComponent getApplicationComponent() {
         return appComponent;
     }
 }

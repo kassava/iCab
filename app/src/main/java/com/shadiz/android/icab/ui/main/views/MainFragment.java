@@ -36,7 +36,7 @@ public class MainFragment extends Fragment implements MainView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        ICabApp.get(getContext()).applicationComponent().plus(new MainModule()).inject(this);
+        ICabApp.get(getContext()).getApplicationComponent().plus(new MainModule()).inject(this);
     }
 
     @Override

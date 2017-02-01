@@ -115,9 +115,9 @@ public abstract class BaseRepository {
 
     public abstract String getLogin();
 
-    public abstract void setPosponedCount(int postopnedCount);
+    public abstract void setPostponedCount(int postponedCount);
 
-    public abstract int getPosponedCount();
+    public abstract int getPostponedCount();
 
     public abstract void setLoginForRegister(String text);
 

@@ -114,12 +114,12 @@ public class PrefsRepo extends BaseRepository {
         return prefs.getString(PREF_LOGIN, "");
     }
 
-    public void setPosponedCount(int postopnedCount) {
+    public void setPostponedCount(int postponedCount) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
-        prefs.edit().putInt(PREF_POSTPONED_COUNT, postopnedCount).apply();
+        prefs.edit().putInt(PREF_POSTPONED_COUNT, postponedCount).apply();
     }
 
-    public int getPosponedCount() {
+    public int getPostponedCount() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getInt(PREF_POSTPONED_COUNT, 0);
     }

@@ -1,5 +1,7 @@
 package com.shadiz.android.icab.data.realm.models;
 
+import android.support.annotation.RequiresPermission;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -42,12 +44,14 @@ public class RealmClientModel extends RealmObject {
     @Required private float difBetweenServerTime;
     @Required private String lastSelectedDriver;
 
-    @Required private String mapStartPointPostLat;
-    @Required private String mapStartPointPostLon;
+    @Required private float mapStartPointPostLat;
+    @Required private float mapStartPointPostLon;
     @Required private String mapStartPointPostGeocode;
-    @Required private String mapEndPointPostLat;
-    @Required private String mapEndPointPostLon;
+    @Required private float mapEndPointPostLat;
+    @Required private float mapEndPointPostLon;
     @Required private String mapEndPointPostGeocode;
+    @Required private float pickClientLocationPostLat;
+    @Required private float pickClientLocationPostLon;
 
     public String getId() {
         return id;
@@ -290,11 +294,11 @@ public class RealmClientModel extends RealmObject {
     }
 
 
-    public String getMapStartPointPostLat() {
+    public float getMapStartPointPostLat() {
         return mapStartPointPostLat;
     }
 
-    public void setMapStartPointPostLat(String mapStartPointPostLat) {
+    public void setMapStartPointPostLat(float mapStartPointPostLat) {
         this.mapStartPointPostLat = mapStartPointPostLat;
     }
 
@@ -310,11 +314,11 @@ public class RealmClientModel extends RealmObject {
         return filterCardsAvailable;
     }
 
-    public String getMapStartPointPostLon() {
+    public float getMapStartPointPostLon() {
         return mapStartPointPostLon;
     }
 
-    public void setMapStartPointPostLon(String mapStartPointPostLon) {
+    public void setMapStartPointPostLon(float mapStartPointPostLon) {
         this.mapStartPointPostLon = mapStartPointPostLon;
     }
 
@@ -326,19 +330,19 @@ public class RealmClientModel extends RealmObject {
         this.mapStartPointPostGeocode = mapStartPointPostGeocode;
     }
 
-    public String getMapEndPointPostLat() {
+    public float getMapEndPointPostLat() {
         return mapEndPointPostLat;
     }
 
-    public void setMapEndPointPostLat(String mapEndPointPostLat) {
+    public void setMapEndPointPostLat(float mapEndPointPostLat) {
         this.mapEndPointPostLat = mapEndPointPostLat;
     }
 
-    public String getMapEndPointPostLon() {
+    public float getMapEndPointPostLon() {
         return mapEndPointPostLon;
     }
 
-    public void setMapEndPointPostLon(String mapEndPointPostLon) {
+    public void setMapEndPointPostLon(float mapEndPointPostLon) {
         this.mapEndPointPostLon = mapEndPointPostLon;
     }
 
@@ -348,5 +352,22 @@ public class RealmClientModel extends RealmObject {
 
     public void setMapEndPointPostGeocode(String mapEndPointPostGeocode) {
         this.mapEndPointPostGeocode = mapEndPointPostGeocode;
+    }
+
+
+    public float getPickClientLocationPostLon() {
+        return pickClientLocationPostLon;
+    }
+
+    public void setPickClientLocationPostLon(float pickClientLocationPostLon) {
+        this.pickClientLocationPostLon = pickClientLocationPostLon;
+    }
+
+    public float getPickClientLocationPostLat() {
+        return pickClientLocationPostLat;
+    }
+
+    public void setPickClientLocationPostLat(float pickClientLocationPostLat) {
+        this.pickClientLocationPostLat = pickClientLocationPostLat;
     }
 }

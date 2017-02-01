@@ -1,7 +1,5 @@
 package com.shadiz.android.icab.data.realm.models;
 
-import android.support.annotation.RequiresPermission;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -29,29 +27,29 @@ public class RealmClientModel extends RealmObject {
     @Required private String mapOrderId;
     @Required private String mapOrderDriverPosition;
     @Required private String mapOrderDriverInfo;
-    @Required private long orderStart; // PREFS_ORDER_START
-    @Required private float postLat;
-    @Required private float postLon;
+    private long orderStart; // PREFS_ORDER_START
+    private float postLat;
+    private float postLon;
     @Required private String postGeocode;
-    @Required private boolean isClientApp; // PREF_IS_CLIENT_APP
+    private boolean isClientApp; // PREF_IS_CLIENT_APP
     @Required private String imageRegister; // PREF_IMAGE_REGISTER
     @Required private String filterRatingFrom; // PREF_FILTER_RATING_FROM
     @Required private String filterRatingTo; // PREF_FILTER_RATING_TO
-    @Required private boolean filterCardsAvailable; // PREF_FILTER_CARDS_AVAILABLE
+    private boolean filterCardsAvailable; // PREF_FILTER_CARDS_AVAILABLE
     @Required private String loginForRegister; // PREF_LOGIN_FOR_REGISTER
-    @Required private float zoom; // PREF_ZOOM
-    @Required private float pickClientLocation;
-    @Required private float difBetweenServerTime;
+    private float zoom; // PREF_ZOOM
+    private float pickClientLocation;
+    private long difBetweenServerTime;
     @Required private String lastSelectedDriver;
 
-    @Required private float mapStartPointPostLat;
-    @Required private float mapStartPointPostLon;
+    private float mapStartPointPostLat;
+    private float mapStartPointPostLon;
     @Required private String mapStartPointPostGeocode;
-    @Required private float mapEndPointPostLat;
-    @Required private float mapEndPointPostLon;
+    private float mapEndPointPostLat;
+    private float mapEndPointPostLon;
     @Required private String mapEndPointPostGeocode;
-    @Required private float pickClientLocationPostLat;
-    @Required private float pickClientLocationPostLon;
+    private float pickClientLocationPostLat;
+    private float pickClientLocationPostLon;
 
     public String getId() {
         return id;
@@ -277,11 +275,11 @@ public class RealmClientModel extends RealmObject {
         this.pickClientLocation = pickClientLocation;
     }
 
-    public float getDifBetweenServerTime() {
+    public long getDifBetweenServerTime() {
         return difBetweenServerTime;
     }
 
-    public void setDifBetweenServerTime(float difBetweenServerTime) {
+    public void setDifBetweenServerTime(long difBetweenServerTime) {
         this.difBetweenServerTime = difBetweenServerTime;
     }
 

@@ -15,26 +15,26 @@ public class RealmTableFields extends RealmObject {
     @Required private String commonTaxiDriver; // COMMON_TAXI_DRIVER_PREFS
     @Required private String login; // PREF_LOGIN
     @Required private String token; // PREF_TOKEN
-    @Required private int discount; // PREF_DISCOUNT
-    @Required private long lastMassageTime; // PREF_LAST_MESSAGE_TIME
-    @Required private long stopServiceTime; // PREF_STOP_SERVICE_TIME
+    private int discount; // PREF_DISCOUNT
+    private long lastMessageTime; // PREF_LAST_MESSAGE_TIME
+    private long stopServiceTime; // PREF_STOP_SERVICE_TIME
 
-    @Required private boolean isCreditCards; // PREF_IS_CREDIT_CARDS
-    @Required private boolean isConnected; // PREF_IS_CONNECTED
-    @Required private int postponedCount; // PREF_POSTPONED_COUNT
+    private boolean isCreditCards; // PREF_IS_CREDIT_CARDS
+    private boolean isConnected; // PREF_IS_CONNECTED
+    private int postponedCount; // PREF_POSTPONED_COUNT
 
-    @Required private float lat; // PREF_LAT
-    @Required private float lng; // PREF_LNG
+    private float lat; // PREF_LAT
+    private float lng; // PREF_LNG
     @Required private String tripId; // TRIP_ID
     @Required private String messageJson; // PREF_MESSAGE_JSON
     @Required private String tripAction; // PREF_TRIP_ACTION
     @Required private String messageJsonInvite; // PREF_MESSAGE_JSON_INVITE
-    @Required private int visibilityRadius; // PREF_VISIBILITY_RADUIS
-    @Required private int carId; // PREF_CAR_ID
+    private int visibilityRadius; // PREF_VISIBILITY_RADUIS
+    private int carId; // PREF_CAR_ID
     @Required private String isoLanguage; // PREF_ISO_LANGUAGE
     @Required private String isoCountry; // PREF_ISO_COUNTRY
     @Required private String lastNewsUpdate; // PREF_LAST_NEWS_UPDATE
-    @Required private String isCompleted; // PREF_COMPLETED
+    @Required private String completed; // PREF_COMPLETED
     @Required private String kmPassed; // PREF_KM_PASSED
     @Required private String cancelledByMe; // PREF_CANCELLED_BY_ME
     @Required private String cancelledBySmth; // PREF_CANCELLED_BY_SMTH
@@ -42,12 +42,12 @@ public class RealmTableFields extends RealmObject {
     @Required private String setStatsRating; // PREF_SET_STATS_RATING
     @Required private String bigLikes; // PREFS_BIG_LIKES
     @Required private String smallLikes; // PREFS_SMALL_LIKES
-    @Required private long statsStart; // PREFS_STATS_START
-    @Required private long statsEnd; // PREF_STATS_END
-    @Required private long postEnd; // PREF_POST_END
-    @Required private long postStart; // PREF_POST_START
-    @Required private long postponedTimeEnd; // PREF_POSTPONED_TIME_END
-    @Required private long postponedTimeStart; // PREF_POSTPONED_TIME_START
+    private long statsStart; // PREFS_STATS_START
+    private long statsEnd; // PREF_STATS_END
+    private long postEnd; // PREF_POST_END
+    private long postStart; // PREF_POST_START
+    private long postponedTimeEnd; // PREF_POSTPONED_TIME_END
+    private long postponedTimeStart; // PREF_POSTPONED_TIME_START
     @Required private String filterDistance; // PREF_FILTER_DISTANCE
     @Required private String filterRad; // PREF_FILTER_RAD
 
@@ -99,12 +99,12 @@ public class RealmTableFields extends RealmObject {
         this.discount = discount;
     }
 
-    public long getLastMassageTime() {
-        return lastMassageTime;
+    public long getLastMessageTime() {
+        return lastMessageTime;
     }
 
-    public void setLastMassageTime(long lastMassageTime) {
-        this.lastMassageTime = lastMassageTime;
+    public void setLastMessageTime(long lastMessageTime) {
+        this.lastMessageTime = lastMessageTime;
     }
 
     public long getStopServiceTime() {
@@ -219,12 +219,12 @@ public class RealmTableFields extends RealmObject {
         this.isoCountry = isoCountry;
     }
 
-    public String getIsCompleted() {
-        return isCompleted;
+    public String getCompleted() {
+        return completed;
     }
 
-    public void setIsCompleted(String isCompleted) {
-        this.isCompleted = isCompleted;
+    public void setCompleted(String completed) {
+        this.completed = completed;
     }
 
     public String getKmPassed() {

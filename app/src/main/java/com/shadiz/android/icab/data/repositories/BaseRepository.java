@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import javax.inject.Inject;
-
 /**
  * Created on 30.01.2017.
  */
@@ -151,9 +149,9 @@ public abstract class BaseRepository {
 
     public abstract float getLatitude();
 
-    public abstract void setLongtitude(float lon);
+    public abstract void setLongitude(float lon);
 
-    public abstract float getLongtitude();
+    public abstract float getLongitude();
 
     public abstract void setCurrentMessageJson(String originalJsonString);
 
@@ -171,13 +169,13 @@ public abstract class BaseRepository {
 
     public abstract int getVisibilityRadius();
 
-    public abstract void setISOLanguage(String langIso) ;
+    public abstract void setIsoLanguage(String langIso) ;
 
-    public abstract String getISOLanguage() ;
+    public abstract String getIsoLanguage() ;
 
-    public abstract void setISOCountry(String countryIso);
+    public abstract void setIsoCountry(String countryIso);
 
-    public abstract String getISOCountry();
+    public abstract String getIsoCountry();
 
     public abstract void setLastNewsUpdate(String time);
 
@@ -187,21 +185,21 @@ public abstract class BaseRepository {
 
     public abstract String getCompleted();
 
-    public abstract void setkm_passed(String value);
+    public abstract void setKmPassed(String value);
 
-    public abstract String getkm_passed();
+    public abstract String getKmPassed();
 
-    public abstract void setcancelled_by_me(String value);
+    public abstract void setCancelledByMe(String value);
 
-    public abstract String getcancelled_by_me();
+    public abstract String getCancelledByMe();
 
-    public abstract void setcancelled_by_smth(String value);
+    public abstract void setCancelledBySmth(String value);
 
-    public abstract String getcancelled_by_smth();
+    public abstract String getCancelledBySmth();
 
-    public abstract void setcomission(String value);
+    public abstract void setCommission(String value);
 
-    public abstract String getcomission();
+    public abstract String getCommission();
 
     public abstract void setStatsRating(String value);
 

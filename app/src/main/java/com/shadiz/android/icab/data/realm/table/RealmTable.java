@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.realm.models;
+package com.shadiz.android.icab.data.realm.table;
 
 /**
  * Created on 01.02.17.

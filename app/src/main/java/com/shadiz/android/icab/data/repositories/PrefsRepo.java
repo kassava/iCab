@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.shadiz.android.icab.R;
-import com.shadiz.android.icab.data.repositories.BaseRepository;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -205,12 +204,12 @@ public class PrefsRepo extends BaseRepository {
         return prefs.getFloat(PREF_LAT, 0); // LocationManager.DEF_LAT
     }
 
-    public void setLongtitude(float lon) {
+    public void setLongitude(float lon) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putFloat(PREF_LNG, lon).apply();
     }
 
-    public float getLongtitude() {
+    public float getLongitude() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getFloat(PREF_LNG, 0); // Location.DEF_LON
     }
@@ -255,22 +254,22 @@ public class PrefsRepo extends BaseRepository {
         return prefs.getInt(PREF_VISIBILITY_RADUIS, 5000);
     }
 
-    public void setISOLanguage(String langIso) {
+    public void setIsoLanguage(String langIso) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_ISO_LANGUAGE, langIso).apply();
     }
 
-    public String getISOLanguage() {
+    public String getIsoLanguage() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_ISO_LANGUAGE, Locale.getDefault().getLanguage().toLowerCase());
     }
 
-    public void setISOCountry(String countryIso) {
+    public void setIsoCountry(String countryIso) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_ISO_COUNTRY, countryIso).apply();
     }
 
-    public String getISOCountry() {
+    public String getIsoCountry() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_ISO_COUNTRY, Locale.getDefault().getISO3Country());
     }
@@ -296,42 +295,42 @@ public class PrefsRepo extends BaseRepository {
         return prefs.getString(PREF_COMPLETED, "-");
     }
 
-    public void setkm_passed(String value) {
+    public void setKmPassed(String value) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_KM_PASSED, value).apply();
     }
 
-    public String getkm_passed() {
+    public String getKmPassed() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_KM_PASSED, "-");
     }
 
-    public void setcancelled_by_me(String value) {
+    public void setCancelledByMe(String value) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_CANCELLED_BY_ME, value).apply();
     }
 
-    public String getcancelled_by_me() {
+    public String getCancelledByMe() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_CANCELLED_BY_ME, "-");
     }
 
-    public void setcancelled_by_smth(String value) {
+    public void setCancelledBySmth(String value) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_CANCELLED_BY_SMTH, value).apply();
     }
 
-    public String getcancelled_by_smth() {
+    public String getCancelledBySmth() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_CANCELLED_BY_SMTH, "-");
     }
 
-    public void setcomission(String value) {
+    public void setCommission(String value) {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         prefs.edit().putString(PREF_COMISSION, value).apply();
     }
 
-    public String getcomission() {
+    public String getCommission() {
         SharedPreferences prefs = context.getSharedPreferences(COMMON_TAXI_DRIVER_PREFS, Context.MODE_PRIVATE);
         return prefs.getString(PREF_COMISSION, "-");
     }

@@ -3,9 +3,10 @@ package com.shadiz.android.icab.dagger.application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.shadiz.android.icab.ICabApp;
+
 import javax.inject.Singleton;
 
-import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,15 +16,21 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    private final Context appContext;
+    private final ICabApp application;
 
-    public AppModule(@NonNull Context context) {
-        appContext = context;
+    public AppModule(@NonNull ICabApp application) {
+        this.application = application;
     }
 
     @Provides
     @Singleton
-    Context provideContext() {
-        return appContext;
+    public ICabApp provideApp() {
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    public Context provideAppContext() {
+        return application.getApplicationContext();
     }
 }

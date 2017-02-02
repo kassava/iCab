@@ -1,7 +1,5 @@
 package com.shadiz.android.icab.data.repositories;
 
-import android.content.Context;
-
 import com.google.android.gms.maps.model.LatLng;
 
 /**
@@ -80,12 +78,6 @@ public abstract class BaseRepository {
     public static final String PICK_CLIENT_LOCATION = "PICK_CLIENT_LOCATION_";
     public static final String DIF_BETWEEN_SERVER_TIME = "DIF_BETWEEN_SERVER_TIME";
     public static String LAST_SELECTED_DRIVER = "LAST_SELECTED_DRIVER";
-
-    protected Context context;
-
-    public BaseRepository(Context context) {
-        this.context = context;
-    }
 
     public abstract void removeClientObject();
 

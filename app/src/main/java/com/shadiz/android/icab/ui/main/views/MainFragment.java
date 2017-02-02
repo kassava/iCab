@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.R;
+import com.shadiz.android.icab.dagger.Injector;
 import com.shadiz.android.icab.dagger.main.MainModule;
 import com.shadiz.android.icab.ui.main.presenter.MainPresenter;
 
@@ -36,7 +36,8 @@ public class MainFragment extends Fragment implements MainView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        ICabApp.get(getContext()).applicationComponent().plus(new MainModule()).inject(this);
+//        ICabApp.get(getContext()).applicationComponent().plus(new MainModule()).inject(this);
+        Injector.getAppComponent().plus(new MainModule()).inject(this);
     }
 
     @Override

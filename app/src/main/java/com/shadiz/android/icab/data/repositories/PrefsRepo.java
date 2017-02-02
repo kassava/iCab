@@ -15,8 +15,10 @@ import java.util.Locale;
 
 public class PrefsRepo extends BaseRepository {
 
+    private Context context;
+
     public PrefsRepo(Context context) {
-        super(context);
+        this.context = context;
     }
 
     public void removeClientObject() {

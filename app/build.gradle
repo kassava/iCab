@@ -7,7 +7,7 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.shadiz.android.icab"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,7 @@ dependencies {
     // tests
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.0.5-beta'
-
+    testProvided 'com.google.dagger:dagger-compiler:2.5'
     // powermock
     testCompile "org.powermock:powermock-module-junit4:1.6.4"
     testCompile "org.powermock:powermock-module-junit4-rule:1.6.4"
@@ -45,8 +45,8 @@ dependencies {
     // AssertJ
     testCompile "org.assertj:assertj-core:3.0.0"
     // robolectric
-    testCompile "org.robolectric:robolectric:3.1-rc1"
-    testCompile "org.robolectric:shadows-support-v4:3.1-rc1"
+    testCompile "org.robolectric:robolectric:3.0"
+    testCompile "org.robolectric:shadows-support-v4:3.0"
     // Rx
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.0'

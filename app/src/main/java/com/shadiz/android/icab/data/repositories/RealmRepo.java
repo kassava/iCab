@@ -3,13 +3,17 @@ package com.shadiz.android.icab.data.repositories;
 import android.content.Context;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.shadiz.android.icab.dagger.Injector;
 import com.shadiz.android.icab.data.realm.models.RealmClientModel;
 import com.shadiz.android.icab.data.realm.models.RealmTableFields;
 import com.shadiz.android.icab.data.realm.table.RealmTable;
 
 import java.util.Calendar;
 
+import javax.inject.Inject;
+
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -19,8 +23,23 @@ import io.realm.RealmResults;
 
 public class RealmRepo extends BaseRepository {
 
-    public RealmRepo(Context context) {
-        super(context);
+    @Inject
+    Context context;
+
+    private RealmConfiguration realmConfiguration;
+
+    public RealmRepo() {
+        Injector.getAppComponent().inject(this);
+    }
+
+    public void setup() {
+        if (realmConfiguration == null) {
+            Realm.init(context);
+            realmConfiguration = new RealmConfiguration.Builder().build();
+            Realm.setDefaultConfiguration(realmConfiguration);
+        } else {
+            throw new IllegalStateException("database already configured");
+        }
     }
 
     @Override

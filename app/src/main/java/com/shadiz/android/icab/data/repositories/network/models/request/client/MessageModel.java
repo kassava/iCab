@@ -1,12 +1,15 @@
-package com.shadiz.android.icab.data.repositories.network.models.request;
+package com.shadiz.android.icab.data.repositories.network.models.request.client;
+
+import com.shadiz.android.icab.data.repositories.network.models.request.common.CodesModel;
 
 /**
- * Created by oldman on 31.01.17.
+ * Created on 31.01.17.
  */
 
 public class MessageModel {
     private String user_from, user_to, type, appear_type, message_body;
     private CodesModel codesModel;
+
     public MessageModel(String user_from, String user_to, String type, String appear_type, String message_body, CodesModel codes) {
         this.user_from = user_from;
         this.user_to = user_to;
@@ -16,7 +19,9 @@ public class MessageModel {
         this.codesModel = codes;
     }
 
-    public CodesModel getCodes() { return codesModel; }
+    public CodesModel getCodes() {
+        return codesModel;
+    }
 
     public void setCodes(CodesModel model) {
         this.codesModel = model;

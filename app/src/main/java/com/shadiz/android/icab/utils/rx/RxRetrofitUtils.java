@@ -1,5 +1,7 @@
 package com.shadiz.android.icab.utils.rx;
 
+import android.util.Log;
+
 import com.shadiz.android.icab.data.repositories.network.TaxiError;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class RxRetrofitUtils {
         return Observable.create(subscriber ->
         {
             final Response<T> execute;
+
             try {
                 execute = call.execute();
             } catch (IOException e) {

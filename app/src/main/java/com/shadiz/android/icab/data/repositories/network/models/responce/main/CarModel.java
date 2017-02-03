@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.models.response.main;
+package com.shadiz.android.icab.data.repositories.network.models.responce.main;
 
 import android.support.annotation.Nullable;
 

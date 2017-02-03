@@ -6,10 +6,11 @@ import android.util.Log;
 import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.data.repositories.network.TaxiService;
-import com.shadiz.android.icab.data.repositories.network.models.request.CreateTripModel;
-import com.shadiz.android.icab.data.repositories.network.models.request.MessageModel;
-import com.shadiz.android.icab.data.repositories.network.models.response.main.DriverModel;
-import com.shadiz.android.icab.data.repositories.network.models.response.TripModel;
+import com.shadiz.android.icab.data.repositories.network.models.request.client.MessageSyncModelRequest;
+import com.shadiz.android.icab.data.repositories.network.models.request.client.TripModelRequest;
+import com.shadiz.android.icab.data.repositories.network.models.responce.client.create_trip.TripModelResponse;
+import com.shadiz.android.icab.data.repositories.network.models.responce.client.message_sync.SyncMessageModelResponce;
+import com.shadiz.android.icab.data.repositories.network.models.responce.main.DriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
 
@@ -40,17 +41,31 @@ public class MainInteractorImpl implements MainInteractor {
     }
 
     @Override
-    public void getTripId(CreateTripModel message) {
+    public void getStatusMessages(MessageSyncModelRequest syncModel) {
         taxiService = ICabApp.getApplicationComponent().getTaxiService();
-        Observable<TripModel> weatherObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getOrder(message));
-//
-        RxRetrofitUtils.wrapAsync(weatherObservable)
-                .subscribe(tripModel -> {
-                    Log.d("MainActivity", "Success " + tripModel.getSession_id());
+        Observable<SyncMessageModelResponce> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
+
+        RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
+                .subscribe(responce -> {
+                    Log.d("MainActivity", "Success " + responce.getStatus() + responce.getResult().getSession_id());
                 }, exception -> {
                     Log.d("MainActivity", exception.getMessage());
                 });
     }
+
+    @Override
+    public void getTripId(TripModelRequest request) {
+        taxiService = ICabApp.getApplicationComponent().getTaxiService();
+        Observable<TripModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getTripId(request));
+
+        RxRetrofitUtils.wrapAsync(getTripObservable)
+                .subscribe(response -> {
+                    Log.d("MainActivity", "Success " + response.getStatus());
+                }, exception -> {
+                    Log.d("MainActivity", exception.getMessage());
+                });
+    }
+
 
     private FullDriverDataModel convert(DriverModel driverModel) {
         return new FullDriverDataModel(

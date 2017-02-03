@@ -5,6 +5,8 @@ import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Modifier;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -50,12 +52,13 @@ public class RetrofitModule {
     @Singleton
     Gson provideGson() {
         return new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .setPrettyPrinting()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .serializeNulls()
                 .create();
     }
+
 
     private static class CustomFieldNamingPolicy implements FieldNamingStrategy {
         @Override

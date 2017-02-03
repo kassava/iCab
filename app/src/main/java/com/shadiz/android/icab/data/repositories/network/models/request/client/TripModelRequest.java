@@ -1,13 +1,15 @@
-package com.shadiz.android.icab.data.repositories.network.models.request;
+package com.shadiz.android.icab.data.repositories.network.models.request.client;
+
 
 /**
  * Created by oldman on 31.01.17.
  */
 
-public class CreateTripModel {
-    String device_uuid, login, device_platform;
+public class TripModelRequest {
+    private String device_uuid, login, device_platform;
+    private MessageModel message;
 
-    public CreateTripModel(String device_uuid, String login, String device_platform, MessageModel message) {
+    public TripModelRequest(String device_uuid, String login, String device_platform, MessageModel message) {
         this.device_uuid = device_uuid;
         this.login = login;
         this.device_platform = device_platform;
@@ -47,5 +49,5 @@ public class CreateTripModel {
         this.device_uuid = device_uuid;
     }
 
-    MessageModel message;
+
 }

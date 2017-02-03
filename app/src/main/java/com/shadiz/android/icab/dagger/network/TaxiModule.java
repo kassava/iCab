@@ -1,8 +1,7 @@
 package com.shadiz.android.icab.dagger.network;
 
 
-import com.shadiz.android.icab.dagger.network.ApiModule;
-import com.shadiz.android.icab.data.repositories.network.TaxiApi;
+import com.shadiz.android.icab.data.repositories.network.ClientApi;
 import com.shadiz.android.icab.data.repositories.network.TaxiService;
 
 import javax.inject.Singleton;
@@ -17,7 +16,7 @@ import dagger.Provides;
 public class TaxiModule {
     @Provides
     @Singleton
-    public TaxiService provideTaxiService(TaxiApi taxiApi) {
+    public TaxiService provideTaxiService(ClientApi taxiApi) {
         return new TaxiService(taxiApi);
     }
 }

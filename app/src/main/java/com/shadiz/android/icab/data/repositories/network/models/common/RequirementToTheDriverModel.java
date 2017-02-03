@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.models.request;
+package com.shadiz.android.icab.data.repositories.network.models.common;
 
 /**
  * Created by oldman on 31.01.17.

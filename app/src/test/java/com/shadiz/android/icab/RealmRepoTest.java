@@ -4,7 +4,6 @@ import com.shadiz.android.icab.dagger.Injector;
 import com.shadiz.android.icab.dagger.application.AppComponentTest;
 import com.shadiz.android.icab.dagger.application.AppModuleTest;
 import com.shadiz.android.icab.dagger.realm.RealmRepoModuleTest;
-import com.shadiz.android.icab.data.realm.table.RealmTable;
 import com.shadiz.android.icab.data.repositories.RealmRepo;
 
 import org.junit.After;
@@ -14,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.core.classloader.annotations.SuppressStaticInitializationFor;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
@@ -26,7 +24,7 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -35,9 +33,8 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * Created on 01.02.2017.
  */
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(application = CustomApplicationTest.class, constants = BuildConfig.class ,sdk = 23)
-@PowerMockIgnore({"org.mockito.*"})
-@SuppressStaticInitializationFor("io.realm.internal.Util")
+@Config(application = CustomAppTest.class, constants = BuildConfig.class ,sdk = 23)
+@PowerMockIgnore({"org.robolectric.*", "android.*"})
 @PrepareForTest({Realm.class, Injector.class, RealmQuery.class, RealmResults.class})
 public class RealmRepoTest {
 
@@ -50,10 +47,10 @@ public class RealmRepoTest {
     public PowerMockRule rule = new PowerMockRule();
 
     @Before
-    public void setUp() throws Exception {
+    public void setupRealm() {
         AppComponentTest appComponentTest = DaggerAppComponentTest.builder()
                 .appModuleTest(new AppModuleTest())
-                .realmRepoModuleTest(new RealmRepoModuleTest(false))
+                .realmRepoModuleTest(new RealmRepoModuleTest())
                 .build();
 
         mockStatic(Injector.class);
@@ -83,9 +80,9 @@ public class RealmRepoTest {
 
     @Test
     public void setClientKey() throws Exception {
-//        repo.setClientKey(RealmTable.RealmClientModel.LAST_SELECTED_DRIVER, "basd");
+//        repo.setClientKey(RealmFieldsTable.RealmClientModel.LAST_SELECTED_DRIVER, "basd");
 
-//        assertThat(repo.getClientKey(RealmTable.RealmClientModel.LAST_SELECTED_DRIVER))
+//        assertThat(repo.getClientKey(RealmFieldsTable.RealmClientModel.LAST_SELECTED_DRIVER))
 //                .isEqualTo("basd");
     }
 
@@ -118,5 +115,4 @@ public class RealmRepoTest {
     public void tearDown() throws Exception {
         realmMock.close();
     }
-
 }

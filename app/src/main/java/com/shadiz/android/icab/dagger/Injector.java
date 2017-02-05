@@ -29,5 +29,4 @@ public class Injector {
         Objects.requireNonNull(appComponent, "applicationComponent is null");
         return appComponent;
     }
-
 }

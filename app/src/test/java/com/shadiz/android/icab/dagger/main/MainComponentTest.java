@@ -5,12 +5,12 @@ import com.shadiz.android.icab.ui.main.views.MainFragment;
 import dagger.Subcomponent;
 
 /**
- * Created on 28.01.2017.
+ * Created on 04.02.2017.
  */
 
-@Subcomponent(modules = {MainModule.class})
+@Subcomponent(modules = {MainModuleTest.class})
 @MainScope
-public interface MainComponent {
+public interface MainComponentTest {
 
     void inject(MainFragment mainFragment);
 }

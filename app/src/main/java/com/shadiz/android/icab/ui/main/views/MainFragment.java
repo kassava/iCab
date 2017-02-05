@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.shadiz.android.icab.R;
 import com.shadiz.android.icab.dagger.Injector;
 import com.shadiz.android.icab.dagger.main.MainModule;
+import com.shadiz.android.icab.data.realm.table.ClientTable;
+import com.shadiz.android.icab.data.repositories.RealmRepo;
 import com.shadiz.android.icab.ui.main.presenter.MainPresenter;
 
 import javax.inject.Inject;
@@ -27,6 +29,8 @@ public class MainFragment extends Fragment implements MainView {
 
     @Inject
     MainPresenter mainPresenter;
+    @Inject
+    RealmRepo realmRepo;
 
     private TextView orderTaxiTextView;
     private ProgressBar progressBar;
@@ -36,8 +40,11 @@ public class MainFragment extends Fragment implements MainView {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-//        ICabApp.get(getContext()).applicationComponent().plus(new MainModule()).inject(this);
         Injector.getAppComponent().plus(new MainModule()).inject(this);
+        long time = realmRepo.getServiceStopTime();
+        int id = realmRepo.getCarId();
+        realmRepo.setClientKey(ClientTable.LAST_SELECTED_DRIVER, "dafffff");
+        String driver = realmRepo.getClientKey(ClientTable.LAST_SELECTED_DRIVER);
     }
 
     @Override

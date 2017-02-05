@@ -12,44 +12,44 @@ public class RealmClientModel extends RealmObject {
 
     @PrimaryKey private String id;
 
-    @Required private String mapLastActionType;
-    @Required private String mapOrderType;
-    @Required private String mapSelectedDriver;
-    @Required private String mapPickupTime;
-    @Required private String mapSeats;
-    @Required private String mapComment;
-    @Required private String mapTripLength;
-    @Required private String mapTripTime;
-    @Required private String mapPrice;
-    @Required private String mapTripCurrency;
-    @Required private String mapStartPoint;
-    @Required private String mapEndPoint;
-    @Required private String mapOrderId;
-    @Required private String mapOrderDriverPosition;
-    @Required private String mapOrderDriverInfo;
-    private long orderStart; // PREFS_ORDER_START
+    @Required private String mapLastActionType = "";
+    @Required private String mapOrderType = "";
+    @Required private String mapSelectedDriver = "";
+    @Required private String mapPickupTime = String.valueOf(System.currentTimeMillis() + 1000 * 60 * 60);
+    @Required private String mapSeats = "4";
+    @Required private String mapComment = "";
+    @Required private String mapTripLength = "";
+    @Required private String mapTripTime = "";
+    @Required private String mapPrice = "";
+    @Required private String mapTripCurrency = "";
+    @Required private String mapStartPoint = "0";
+    @Required private String mapEndPoint = "0";
+    @Required private String mapOrderId = "";
+    @Required private String mapOrderDriverPosition = "";
+    @Required private String mapOrderDriverInfo = "";
+    private long orderStart = -1; // PREFS_ORDER_START
     private float postLat;
     private float postLon;
-    @Required private String postGeocode;
+    @Required private String postGeocode = "not set";
     private boolean isClientApp; // PREF_IS_CLIENT_APP
-    @Required private String imageRegister; // PREF_IMAGE_REGISTER
-    @Required private String filterRatingFrom; // PREF_FILTER_RATING_FROM
-    @Required private String filterRatingTo; // PREF_FILTER_RATING_TO
-    private boolean filterCardsAvailable; // PREF_FILTER_CARDS_AVAILABLE
-    @Required private String loginForRegister; // PREF_LOGIN_FOR_REGISTER
-    private float zoom; // PREF_ZOOM
-    private float pickClientLocation;
-    private long difBetweenServerTime;
-    @Required private String lastSelectedDriver;
+    @Required private String imageRegister = ""; // PREF_IMAGE_REGISTER
+    @Required private String filterRatingFrom = "0"; // PREF_FILTER_RATING_FROM
+    @Required private String filterRatingTo = "5"; // PREF_FILTER_RATING_TO
+    private boolean filterCardsAvailable = false; // PREF_FILTER_CARDS_AVAILABLE
+    @Required private String loginForRegister = ""; // PREF_LOGIN_FOR_REGISTER
+    private float zoom = 12; // PREF_ZOOM
+    private float pickClientLocation = 0;
+    private long difBetweenServerTime = -1;
+    @Required private String lastSelectedDriver = "";
 
-    private float mapStartPointPostLat;
-    private float mapStartPointPostLon;
-    @Required private String mapStartPointPostGeocode;
-    private float mapEndPointPostLat;
-    private float mapEndPointPostLon;
-    @Required private String mapEndPointPostGeocode;
-    private float pickClientLocationPostLat;
-    private float pickClientLocationPostLon;
+    private float mapStartPointPostLat = 0;
+    private float mapStartPointPostLon = 0;
+    @Required private String mapStartPointPostGeocode = "null";
+    private float mapEndPointPostLat = 0;
+    private float mapEndPointPostLon = 0;
+    @Required private String mapEndPointPostGeocode = "null";
+    private float pickClientLocationPostLat = 0;
+    private float pickClientLocationPostLon = 0;
 
     public String getId() {
         return id;

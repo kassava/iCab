@@ -4,7 +4,7 @@ package com.shadiz.android.icab;
  * Created on 02.02.2017.
  */
 
-public class CustomApplicationTest  extends ICabApp {
+public class CustomAppTest extends ICabApp {
 
     @Override
     protected void initRealm() {

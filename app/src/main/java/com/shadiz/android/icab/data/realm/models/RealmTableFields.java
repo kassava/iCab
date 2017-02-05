@@ -1,5 +1,7 @@
 package com.shadiz.android.icab.data.realm.models;
 
+import java.util.Locale;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -12,44 +14,44 @@ public class RealmTableFields extends RealmObject {
 
     @PrimaryKey private String id;
 
-    @Required private String commonTaxiDriver; // COMMON_TAXI_DRIVER_PREFS
-    @Required private String login; // PREF_LOGIN
-    @Required private String token; // PREF_TOKEN
-    private int discount; // PREF_DISCOUNT
-    private long lastMessageTime; // PREF_LAST_MESSAGE_TIME
-    private long stopServiceTime; // PREF_STOP_SERVICE_TIME
+    @Required private String commonTaxiDriver = "common_driver"; // COMMON_TAXI_DRIVER_PREFS
+    @Required private String login = ""; // PREF_LOGIN
+    @Required private String token = ""; // PREF_TOKEN
+    private int discount = 0; // PREF_DISCOUNT
+    private long lastMessageTime = -1; // PREF_LAST_MESSAGE_TIME
+    private long stopServiceTime = -1; // PREF_STOP_SERVICE_TIME
 
-    private boolean isCreditCards; // PREF_IS_CREDIT_CARDS
-    private boolean isConnected; // PREF_IS_CONNECTED
-    private int postponedCount; // PREF_POSTPONED_COUNT
+    private boolean isCreditCards = false; // PREF_IS_CREDIT_CARDS
+    private boolean isConnected = false; // PREF_IS_CONNECTED
+    private int postponedCount = 0; // PREF_POSTPONED_COUNT
 
-    private float lat; // PREF_LAT
-    private float lng; // PREF_LNG
-    @Required private String tripId; // TRIP_ID
-    @Required private String messageJson; // PREF_MESSAGE_JSON
-    @Required private String tripAction; // PREF_TRIP_ACTION
-    @Required private String messageJsonInvite; // PREF_MESSAGE_JSON_INVITE
-    private int visibilityRadius; // PREF_VISIBILITY_RADUIS
-    private int carId; // PREF_CAR_ID
-    @Required private String isoLanguage; // PREF_ISO_LANGUAGE
-    @Required private String isoCountry; // PREF_ISO_COUNTRY
-    @Required private String lastNewsUpdate; // PREF_LAST_NEWS_UPDATE
-    @Required private String completed; // PREF_COMPLETED
-    @Required private String kmPassed; // PREF_KM_PASSED
-    @Required private String cancelledByMe; // PREF_CANCELLED_BY_ME
-    @Required private String cancelledBySmth; // PREF_CANCELLED_BY_SMTH
-    @Required private String commission; // PREF_COMISSION
-    @Required private String setStatsRating; // PREF_SET_STATS_RATING
-    @Required private String bigLikes; // PREFS_BIG_LIKES
-    @Required private String smallLikes; // PREFS_SMALL_LIKES
-    private long statsStart; // PREFS_STATS_START
-    private long statsEnd; // PREF_STATS_END
-    private long postEnd; // PREF_POST_END
-    private long postStart; // PREF_POST_START
-    private long postponedTimeEnd; // PREF_POSTPONED_TIME_END
-    private long postponedTimeStart; // PREF_POSTPONED_TIME_START
-    @Required private String filterDistance; // PREF_FILTER_DISTANCE
-    @Required private String filterRad; // PREF_FILTER_RAD
+    private float lat = 0; // PREF_LAT
+    private float lng = 0; // PREF_LNG
+    @Required private String tripId = ""; // TRIP_ID
+    @Required private String messageJson = ""; // PREF_MESSAGE_JSON
+    @Required private String tripAction = ""; // PREF_TRIP_ACTION
+    @Required private String messageJsonInvite = ""; // PREF_MESSAGE_JSON_INVITE
+    private int visibilityRadius = 5000; // PREF_VISIBILITY_RADUIS
+    private int carId = -1; // PREF_CAR_ID
+    @Required private String isoLanguage = Locale.getDefault().getLanguage().toLowerCase(); // PREF_ISO_LANGUAGE
+    @Required private String isoCountry = Locale.getDefault().getISO3Country(); // PREF_ISO_COUNTRY
+    @Required private String lastNewsUpdate = "2015-01-01 15:40:51"; // PREF_LAST_NEWS_UPDATE
+    @Required private String completed = "-"; // PREF_COMPLETED
+    @Required private String kmPassed = "-"; // PREF_KM_PASSED
+    @Required private String cancelledByMe = "-"; // PREF_CANCELLED_BY_ME
+    @Required private String cancelledBySmth = "-"; // PREF_CANCELLED_BY_SMTH
+    @Required private String commission = "-"; // PREF_COMISSION
+    @Required private String setStatsRating = "0"; // PREF_SET_STATS_RATING
+    @Required private String bigLikes = "0"; // PREFS_BIG_LIKES
+    @Required private String smallLikes = "0"; // PREFS_SMALL_LIKES
+    private long statsStart = System.currentTimeMillis(); // PREFS_STATS_START
+    private long statsEnd = System.currentTimeMillis(); // PREF_STATS_END
+    private long postEnd = System.currentTimeMillis(); // PREF_POST_END
+    private long postStart = 0; // PREF_POST_START
+    private long postponedTimeEnd = System.currentTimeMillis(); // PREF_POSTPONED_TIME_END
+    private long postponedTimeStart = System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 7); // 7 days backport. PREF_POSTPONED_TIME_START
+    @Required private String filterDistance = "5"; // PREF_FILTER_DISTANCE
+    @Required private String filterRad = "5"; // PREF_FILTER_RAD
 
     public String getLastNewsUpdate() {
         return lastNewsUpdate;
@@ -292,6 +294,7 @@ public class RealmTableFields extends RealmObject {
     }
 
     public long getStatsEnd() {
+        if (statsEnd == -1) statsEnd = System.currentTimeMillis();
         return statsEnd;
     }
 

@@ -3,12 +3,13 @@ package com.shadiz.android.icab.ui.main.presenter;
 import android.support.annotation.NonNull;
 
 import com.shadiz.android.icab.business.main.MainInteractor;
-import com.shadiz.android.icab.data.repositories.network.models.request.client.TripModelRequest;
-import com.shadiz.android.icab.data.repositories.network.models.request.common.CodesModel;
-import com.shadiz.android.icab.data.repositories.network.models.request.common.LocationModel;
-import com.shadiz.android.icab.data.repositories.network.models.request.client.MessageModel;
-import com.shadiz.android.icab.data.repositories.network.models.request.client.MessageSyncModelRequest;
-import com.shadiz.android.icab.data.repositories.network.models.common.RequirementToTheDriverModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
+import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.model.LocationModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.MessageOfOrderModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.SyncMessageModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.ui.main.views.MainView;
 import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;
@@ -46,12 +47,13 @@ public class MainPresenterImpl implements MainPresenter {
         mainView.showProgress();
 
         LocationModel location = new LocationModel(-122.084, 37.422, 12, "Luna");
-        RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel(7000, 0, 5, 0);
+        RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
-        MessageModel messageModel = new MessageModel("", "", "clientServer_userWantsToOrderTaxi_agree","0",  "",  codesModel);
-        TripModelRequest createTripModel = new TripModelRequest("3af83a99f6f8ad7", "3333333333", "android", messageModel);
-        MessageSyncModelRequest syncModel = new MessageSyncModelRequest("2017-02-01 04:54:57", "3af83a99f6f8ad7", "3333333333", "android");
-        mainInteractor.getTripId(createTripModel);
+        DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
+        MessageOfOrderModel messageModel = new MessageOfOrderModel("", "", "clientServer_userWantsToOrderTaxi_agree","0",  "",  codesModel);
+        CreateOrderModelRequest createTripModel = new CreateOrderModelRequest(deviceModelRequest, messageModel);
+        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
+        mainInteractor.getTripId(createTripModel, syncModel);
 //        mainInteractor.getStatusMessages(syncModel);
     }
 

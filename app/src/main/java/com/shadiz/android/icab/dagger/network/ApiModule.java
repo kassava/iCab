@@ -1,6 +1,7 @@
 package com.shadiz.android.icab.dagger.network;
 
-import com.shadiz.android.icab.data.repositories.network.ClientApi;
+import com.shadiz.android.icab.data.repositories.network.client.ClientApi;
+import com.shadiz.android.icab.data.repositories.network.driver.DriverApi;
 
 import javax.inject.Singleton;
 
@@ -16,7 +17,13 @@ import retrofit2.Retrofit;
 public class ApiModule {
     @Provides
     @Singleton
-    public ClientApi provideApi(Retrofit retrofit) {
+    public ClientApi provideClientApi(Retrofit retrofit) {
         return retrofit.create(ClientApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public DriverApi provideDriverApi(Retrofit retrofit) {
+        return retrofit.create(DriverApi.class);
     }
 }

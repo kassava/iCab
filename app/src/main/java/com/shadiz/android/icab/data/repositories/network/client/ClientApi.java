@@ -3,7 +3,7 @@ package com.shadiz.android.icab.data.repositories.network.client;
 
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.message_sync.SyncMessageModelResponse;
+import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
 
 import retrofit2.Call;

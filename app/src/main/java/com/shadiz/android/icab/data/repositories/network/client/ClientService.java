@@ -4,13 +4,13 @@ package com.shadiz.android.icab.data.repositories.network.client;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.SyncMessageModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.cancel_order.OrderCancelerModelRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order.TripRaterRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.message_sync.SyncMessageModelResponse;
+import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
 
 import javax.inject.Inject;

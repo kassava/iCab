@@ -1,7 +1,7 @@
 package com.shadiz.android.icab.business.main;
 
 import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.SyncMessageModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 
 import rx.Observable;

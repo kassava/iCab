@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.driver.models.request.confirm_order;
+package com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order;
 
 /**
  * Created on 05.02.2017.
@@ -7,6 +7,7 @@ package com.shadiz.android.icab.data.repositories.network.driver.models.request.
 public class MessageOrderModel {
     private String type, code2, code3, code4;
     private int code1;
+
 
     /**
      *

@@ -2,13 +2,13 @@ package com.shadiz.android.icab.data.repositories.network.client.models.response
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.shadiz.android.icab.data.repositories.network.common.BaseOrderResult;
+import com.shadiz.android.icab.data.repositories.network.common.BaseResult;
 
 /**
  * Created by 31.01.17.
  */
 
-public class OrderCreatorResult extends BaseOrderResult {
+public class OrderCreatorResult extends BaseResult {
     @SerializedName("trip_id")
     @Expose
     private String tripId;

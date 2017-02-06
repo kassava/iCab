@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by OldMan on 05.02.2017.
  */
 
-public class BaseOrderResult {
+public class BaseResult {
     @SerializedName("session_id")
     @Expose
     private String sessionId;

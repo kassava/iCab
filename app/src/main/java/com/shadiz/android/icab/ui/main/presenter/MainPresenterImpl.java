@@ -8,7 +8,7 @@ import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel
 import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.model.LocationModel;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.MessageOfOrderModel;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.SyncMessageModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.ui.main.views.MainView;
@@ -46,7 +46,7 @@ public class MainPresenterImpl implements MainPresenter {
     public void clickToOrderButton() {
         mainView.showProgress();
 
-        LocationModel location = new LocationModel(-122.084, 37.422, 12, "Luna");
+        LocationModel location = new LocationModel(-122.084, 37.422, 12, "Luna", -1, -1);
         RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");

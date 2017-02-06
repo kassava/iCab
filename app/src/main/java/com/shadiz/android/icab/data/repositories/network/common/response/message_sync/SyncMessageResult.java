@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.client.models.response.message_sync;
+package com.shadiz.android.icab.data.repositories.network.common.response.message_sync;
 
 
 import com.google.gson.annotations.Expose;

@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.driver.models.response.order_confirm;
+package com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

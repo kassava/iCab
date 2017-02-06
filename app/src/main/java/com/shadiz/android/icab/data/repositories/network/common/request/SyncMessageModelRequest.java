@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.client.models.request;
+package com.shadiz.android.icab.data.repositories.network.common.request;
 
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;

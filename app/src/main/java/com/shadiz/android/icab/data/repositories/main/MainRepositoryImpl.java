@@ -2,8 +2,8 @@ package com.shadiz.android.icab.data.repositories.main;
 
 
 
-import com.shadiz.android.icab.data.repositories.network.models.responce.main.CarModel;
-import com.shadiz.android.icab.data.repositories.network.models.responce.main.DriverModel;
+import com.shadiz.android.icab.data.repositories.network.main.CarModel;
+import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 
 import java.util.concurrent.TimeUnit;
 

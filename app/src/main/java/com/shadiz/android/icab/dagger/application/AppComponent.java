@@ -3,7 +3,7 @@ package com.shadiz.android.icab.dagger.application;
 import com.shadiz.android.icab.dagger.main.MainComponent;
 import com.shadiz.android.icab.dagger.main.MainModule;
 import com.shadiz.android.icab.dagger.network.TaxiModule;
-import com.shadiz.android.icab.data.repositories.network.TaxiService;
+import com.shadiz.android.icab.data.repositories.network.client.ClientService;
 
 import javax.inject.Singleton;
 
@@ -18,7 +18,7 @@ import dagger.Component;
 public interface AppComponent {
 
     MainComponent plus(MainModule mainModule);
-    TaxiService getTaxiService();
+    ClientService getTaxiService();
 
-    void inject(TaxiService taxiService);
+    void inject(ClientService taxiService);
 }

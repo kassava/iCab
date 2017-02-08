@@ -4,10 +4,10 @@ package com.shadiz.android.icab.data.repositories.network.common;
  * Created by oldman on 31.01.17.
  */
 
-public class LocationModel {
+public class LocationModelRequest {
     double latitude, longitude;
     int precision;
-    public LocationModel(double latitude, double longitude, int precision, String geocode) {
+    public LocationModelRequest(double latitude, double longitude, int precision, String geocode) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.precision = precision;

@@ -8,10 +8,9 @@ public class MessageOrderModel {
     private String type, code2, code3, code4;
     private int code1;
 
-
     /**
      *
-     * @param type -  driverServer_userWantsToOrderTaxi_agree
+     * @param type -  driverServer_userWantsToOrderTaxi_agree/driverServer_taxiSetOffToTheClient_agree
      * @param code1 -  id поездки
      * @param code2
      * @param code3

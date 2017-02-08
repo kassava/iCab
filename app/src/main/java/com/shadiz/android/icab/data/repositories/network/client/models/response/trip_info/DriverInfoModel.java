@@ -3,28 +3,21 @@ package com.shadiz.android.icab.data.repositories.network.client.models.response
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.shadiz.android.icab.data.repositories.network.common.model.CarModel;
-import com.shadiz.android.icab.data.repositories.network.common.model.LocationModel;
+import com.shadiz.android.icab.data.repositories.network.common.response.BaseUserInfo;
+import com.shadiz.android.icab.data.repositories.network.common.response.LocationModelResponse;
 
 /**
  * Created by oldman on 06.02.17.
  */
 
-public class DriverInfoModel {
-    @SerializedName("id")
-    @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("image_url")
-    @Expose
-    private String image_url;
+public class DriverInfoModel extends BaseUserInfo {
+
     @SerializedName("current_discount")
     @Expose
     private Integer current_discount;
-    @SerializedName("likes")
+    @SerializedName("position")
     @Expose
-    private Integer likes;
+    private LocationModelResponse position;
     @SerializedName("car_info")
     @Expose
     private CarModel car_info;
@@ -34,30 +27,10 @@ public class DriverInfoModel {
     @SerializedName("phone")
     @Expose
     private Integer phone;
+    @SerializedName("likes")
+    @Expose
+    private float likes;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImage_url() {
-        return image_url;
-    }
-
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
-    }
 
     public Integer getCurrent_discount() {
         return current_discount;
@@ -67,11 +40,11 @@ public class DriverInfoModel {
         this.current_discount = current_discount;
     }
 
-    public Integer getLikes() {
+    public float getLikes() {
         return likes;
     }
 
-    public void setLikes(Integer likes) {
+    public void setLikes(float likes) {
         this.likes = likes;
     }
 
@@ -99,27 +72,13 @@ public class DriverInfoModel {
         this.phone = phone;
     }
 
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
-
-    public LocationModel getPosition() {
+    public LocationModelResponse getPosition() {
         return position;
     }
 
-    public void setPosition(LocationModel position) {
+    public void setPosition(LocationModelResponse position) {
         this.position = position;
     }
 
-    @SerializedName("likes")
-    @Expose
 
-    private Integer rating;
-    @SerializedName("rating")
-    @Expose
-    private LocationModel position;
 }

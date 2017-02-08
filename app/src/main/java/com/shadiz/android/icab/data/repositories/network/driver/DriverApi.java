@@ -2,6 +2,7 @@ package com.shadiz.android.icab.data.repositories.network.driver;
 
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm.OrderConfirmationModelResponse;
+import com.shadiz.android.icab.data.repositories.network.driver.models.response.trip_info.DriverTripResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -34,6 +35,20 @@ public interface DriverApi {
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
     Call<OrderConfirmationModelResponse> setOffToTheClient(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+
+    /**
+     * @param device_uuid
+     * @param login
+     * @param android
+     * @param trip_filter
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/api/driverGetTripsInfo.php")
+    Call<DriverTripResponse> getDriverTripsInfo(@Field("device_uuid") String device_uuid, @Field("login") String login,
+                                                @Field("device_platform") String android, @Field("trip_filter") String trip_filter,
+                                                @Field("trip_client_in_radius_meters") Integer trip_client_in_radius_meters,
+                                                @Field("trip_max_distance_meters") Integer trip_max_distance_meters);
 
     /**
      * @param date

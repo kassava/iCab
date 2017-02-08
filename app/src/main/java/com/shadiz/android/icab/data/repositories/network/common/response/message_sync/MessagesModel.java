@@ -1,60 +1,73 @@
 package com.shadiz.android.icab.data.repositories.network.common.response.message_sync;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import com.shadiz.android.icab.data.repositories.network.common.response.LocationModelResponse;
 
 import java.util.Date;
 
 /**
- * Created by oldman on 01.02.17.
+ * Created on 01.02.17.
  */
 
 public class MessagesModel {
+    @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("user_from")
     @Expose
     private Integer user_from;
+    @SerializedName("user_to")
     @Expose
     private Integer user_to;
+    @SerializedName("appear_type")
     @Expose
     private Integer appear_type;
+    @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("expiretime")
     @Expose
     private String expiretime;
+    @SerializedName("message_body")
     @Expose
     private String message_body;
+    @SerializedName("code1")
     @Expose
-    private String code1;
+    private Integer code1;
+    @SerializedName("code2")
     @Expose
     private String code2;
+    @SerializedName("code3")
     @Expose
-    private String code3;
+    private Integer code3;
+    @SerializedName("code4")
     @Expose
-    private String code4;
+    private Integer code4;
+    @SerializedName("code5")
     @Expose
-    private String code5;
+    private LocationModelResponse code5;
+    @SerializedName("code6")
     @Expose
-    private String code6;
+    private float code6;
+    @SerializedName("code7")
     @Expose
     private String code7;
+    @SerializedName("code8")
     @Expose
-    private String code8;
+    private Integer code8;
+    @SerializedName("code9")
     @Expose
     private String code9;
+    @SerializedName("code10")
     @Expose
     private String code10;
+    @SerializedName("date_created")
     @Expose
     private Date date_created;
+    @SerializedName("date_sent")
     @Expose
-    private Date  date_sent;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    private Date date_sent;
 
     public Integer getId() {
         return id;
@@ -88,6 +101,13 @@ public class MessagesModel {
         this.appear_type = appear_type;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getExpiretime() {
         return expiretime;
@@ -105,11 +125,11 @@ public class MessagesModel {
         this.message_body = message_body;
     }
 
-    public String getCode1() {
+    public Integer getCode1() {
         return code1;
     }
 
-    public void setCode1(String code1) {
+    public void setCode1(Integer code1) {
         this.code1 = code1;
     }
 
@@ -121,35 +141,35 @@ public class MessagesModel {
         this.code2 = code2;
     }
 
-    public String getCode3() {
+    public Integer getCode3() {
         return code3;
     }
 
-    public void setCode3(String code3) {
+    public void setCode3(Integer code3) {
         this.code3 = code3;
     }
 
-    public String getCode4() {
+    public Integer getCode4() {
         return code4;
     }
 
-    public void setCode4(String code4) {
+    public void setCode4(Integer code4) {
         this.code4 = code4;
     }
 
-    public String getCode5() {
+    public LocationModelResponse getCode5() {
         return code5;
     }
 
-    public void setCode5(String code5) {
+    public void setCode5(LocationModelResponse code5) {
         this.code5 = code5;
     }
 
-    public String getCode6() {
+    public float getCode6() {
         return code6;
     }
 
-    public void setCode6(String code6) {
+    public void setCode6(float code6) {
         this.code6 = code6;
     }
 
@@ -161,11 +181,11 @@ public class MessagesModel {
         this.code7 = code7;
     }
 
-    public String getCode8() {
+    public Integer getCode8() {
         return code8;
     }
 
-    public void setCode8(String code8) {
+    public void setCode8(Integer code8) {
         this.code8 = code8;
     }
 

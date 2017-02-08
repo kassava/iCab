@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.common.model;
+package com.shadiz.android.icab.data.repositories.network.common.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by oldman on 31.01.17.
  */
 
-public class LocationModel {
+public class LocationModelResponse {
     @SerializedName("longitude")
     @Expose
     private double longitude;
@@ -24,7 +24,7 @@ public class LocationModel {
     @Expose
     private Integer distance;
 
-    public LocationModel(double longitude, double latitude, double precision, double bearing, Integer distance) {
+    public LocationModelResponse(double longitude, double latitude, double precision, double bearing, Integer distance) {
         this.longitude = longitude;
         this.latitude = latitude;
         this.precision = precision;

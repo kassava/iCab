@@ -1,15 +1,17 @@
 package com.shadiz.android.icab.data.repositories.network.common.model;
 
+
+import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
 
 /**
- * Created by oldman on 31.01.17.
+ * Created on 31.01.17.
  */
 
 public class CodesModel {
     private String code1, code3, code6;
     private  int code5, code7, code8, code9;
-    private LocationModel code2, code4;
+    private LocationModelRequest code2, code4;
     private RequirementToTheDriverModel code10;
 
     /**
@@ -26,7 +28,7 @@ public class CodesModel {
      * @param code10(JSON) - фильтр поиска (radius / rateFrom / rateTo / acceptCC) (left empty will fill this up with system values from config).
      * code10 example:{"radius":"20000","rateFrom":0,"rateTo":7,"acceptCC":1}
      */
-    public CodesModel(String code1,LocationModel code2, String code3, LocationModel code4, int code5, String code6, int code7, int code8, int code9, RequirementToTheDriverModel code10) {
+    public CodesModel(String code1, LocationModelRequest code2, String code3, LocationModelRequest code4, int code5, String code6, int code7, int code8, int code9, RequirementToTheDriverModel code10) {
         this.code1 = code1;
         this.code3 = code3;
         this.code4 = code4;
@@ -56,11 +58,11 @@ public class CodesModel {
         this.code3 = code3;
     }
 
-    public LocationModel getCode4() {
+    public LocationModelRequest getCode4() {
         return code4;
     }
 
-    public void setCode4(LocationModel code4) {
+    public void setCode4(LocationModelRequest code4) {
         this.code4 = code4;
     }
 
@@ -104,11 +106,11 @@ public class CodesModel {
         this.code9 = code9;
     }
 
-    public LocationModel getCode2() {
+    public LocationModelRequest getCode2() {
         return code2;
     }
 
-    public void setCode2(LocationModel code2) {
+    public void setCode2(LocationModelRequest code2) {
         this.code2 = code2;
     }
 

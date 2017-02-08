@@ -3,24 +3,25 @@ package com.shadiz.android.icab.data.repositories.network.client.models.request.
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created on 06.02.17.
  */
 
-public class TripsInfoRequest extends BaseModelRequest{
-    List<String> tripFilter;
+public class ClientTripsInfoRequest extends BaseModelRequest{
+    private   ArrayList<String> tripFilter;
 
-    public List<String> getTripFilter() {
+    public ArrayList<String> getTripFilter() {
         return tripFilter;
     }
 
-    public void setTripFilter(List<String> tripFilter) {
+    public void setTripFilter(ArrayList<String> tripFilter) {
         this.tripFilter = tripFilter;
     }
 
-    public TripsInfoRequest(DeviceModelRequest modelRequest, List<String> tripFilter) {
+    public ClientTripsInfoRequest(DeviceModelRequest modelRequest, ArrayList<String> tripFilter) {
         super(modelRequest);
         this.tripFilter = tripFilter;
     }

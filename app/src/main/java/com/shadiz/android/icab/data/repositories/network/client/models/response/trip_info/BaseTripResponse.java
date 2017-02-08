@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 /**
- * Created by oldman on 06.02.17.
+ * Created by oldman on 07.02.17.
  */
 
-public class ActiveTrip {
+public class BaseTripResponse {
     @SerializedName("id")
     @Expose
     Integer id;
@@ -51,7 +51,7 @@ public class ActiveTrip {
     Date date_started;
     @SerializedName("pickup_time")
     @Expose
-    String pickup_time;
+    Date pickup_time;
     @SerializedName("order_time")
     @Expose
     Date order_time;
@@ -169,11 +169,11 @@ public class ActiveTrip {
         this.date_started = date_started;
     }
 
-    public String getPickup_time() {
+    public Date getPickup_time() {
         return pickup_time;
     }
 
-    public void setPickup_time(String pickup_time) {
+    public void setPickup_time(Date pickup_time) {
         this.pickup_time = pickup_time;
     }
 

@@ -13,6 +13,12 @@ public class DriverTripResponse extends BaseResponse {
     @SerializedName("result")
     @Expose
     private TripInfoResult result;
-   
 
+    public TripInfoResult getResult() {
+        return result;
+    }
+
+    public void setResult(TripInfoResult result) {
+        this.result = result;
+    }
 }

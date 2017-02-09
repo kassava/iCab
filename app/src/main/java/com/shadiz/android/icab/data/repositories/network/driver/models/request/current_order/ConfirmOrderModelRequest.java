@@ -8,17 +8,17 @@ import com.shadiz.android.icab.data.repositories.network.common.request.DeviceMo
  */
 
 public class ConfirmOrderModelRequest extends BaseModelRequest {
-    private MessageOrderModel message;
+    private OrderMessageModel message;
 
-    public MessageOrderModel getMessage() {
+    public OrderMessageModel getMessage() {
         return message;
     }
 
-    public void setMessage(MessageOrderModel message) {
+    public void setMessage(OrderMessageModel message) {
         this.message = message;
     }
 
-    public ConfirmOrderModelRequest(DeviceModelRequest modelRequest, MessageOrderModel message) {
+    public ConfirmOrderModelRequest(DeviceModelRequest modelRequest, OrderMessageModel message) {
         super(modelRequest);
         this.message = message;
     }

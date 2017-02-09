@@ -1,5 +1,6 @@
 package com.shadiz.android.icab.data.repositories.network.driver;
 
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm.OrderConfirmationModelResponse;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.trip_info.DriverTripResponse;
@@ -24,6 +25,18 @@ public interface DriverApi {
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
     Call<OrderConfirmationModelResponse> setDriverOrderConfirmation(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+
+
+    /**
+     * @param device_uuid
+     * @param login
+     * @param android
+     * @param messageModel: type (string) - clientServer_userWantsToCancelOrder_agree; code1 (int) - id поездки; code2 (string) - причина отмены ( опционально ); code3 () -, code4 () -
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("/api/messageCreate.php")
+    Call<OrderCancelerModelResponse> setCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
     /**
      * @param device_uuid

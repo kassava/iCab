@@ -3,11 +3,11 @@ package com.shadiz.android.icab.ui.main.presenter;
 import android.support.annotation.NonNull;
 
 import com.shadiz.android.icab.business.main.MainInteractor;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
 import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.MessageOfOrderModel;
+import com.shadiz.android.icab.data.repositories.network.common.request.order.MessageOfOrderModel;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
@@ -50,8 +50,8 @@ public class MainPresenterImpl implements MainPresenter {
         RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
-        MessageOfOrderModel messageModel = new MessageOfOrderModel("", "", "clientServer_userWantsToOrderTaxi_agree","0",  "",  codesModel);
-        CreateOrderModelRequest createTripModel = new CreateOrderModelRequest(deviceModelRequest, messageModel);
+        MessageOfOrderModel messageModel = new MessageOfOrderModel("clientServer_userWantsToOrderTaxi_agree","",  0, 0,  -1,  codesModel);
+        OrderModelRequest createTripModel = new OrderModelRequest(deviceModelRequest, messageModel);
         SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
         mainInteractor.getTripId(createTripModel, syncModel);
 //        mainInteractor.getStatusMessages(syncModel);

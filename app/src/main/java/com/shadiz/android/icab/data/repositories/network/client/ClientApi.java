@@ -3,8 +3,10 @@ package com.shadiz.android.icab.data.repositories.network.client;
 
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
+import com.shadiz.android.icab.data.repositories.network.driver.models.response.trip_info.DriverTripResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -100,4 +102,9 @@ public interface ClientApi {
     @POST("/api/messageCreate.php")
     Call<TripRaterResponse> setRateDriverAfterTrip(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
+
+    @FormUrlEncoded
+    @POST("/api/clientGetTripsInfo.php")
+    Call<TripInfoResponse> getClientTripsInfo(@Field("device_uuid") String device_uuid, @Field("login") String login,
+                                              @Field("device_platform") String android, @Field("trip_filter") String tripFilter);
 }

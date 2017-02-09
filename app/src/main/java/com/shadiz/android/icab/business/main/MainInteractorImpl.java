@@ -7,7 +7,7 @@ import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
@@ -42,7 +42,7 @@ public class MainInteractorImpl implements MainInteractor {
 
     @Override
     public void getStatusMessages(SyncMessageModelRequest syncModel) {
-        taxiService = ICabApp.getApplicationComponent().getTaxiService();
+        taxiService = ICabApp.getApplicationComponent().getClientService();
         Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
 
         RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
@@ -54,9 +54,9 @@ public class MainInteractorImpl implements MainInteractor {
     }
 
     @Override
-    public void getTripId(CreateOrderModelRequest request, SyncMessageModelRequest syncModel) {
-        taxiService = ICabApp.getApplicationComponent().getTaxiService();
-        Observable<OrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getTripId(request));
+    public void getTripId(OrderModelRequest request, SyncMessageModelRequest syncModel) {
+        taxiService = ICabApp.getApplicationComponent().getClientService();
+        Observable<OrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getNewTripId(request));
         Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
 
         RxRetrofitUtils.wrapAsync(getTripObservable)

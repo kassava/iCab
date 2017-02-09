@@ -1,6 +1,6 @@
 package com.shadiz.android.icab.business.main;
 
-import com.shadiz.android.icab.data.repositories.network.client.models.request.create_order.CreateOrderModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 
@@ -18,5 +18,5 @@ public interface MainInteractor {
      */
     Observable<FullDriverDataModel> getFreeDrivers();
     void getStatusMessages(SyncMessageModelRequest syncModel);
-    void getTripId(CreateOrderModelRequest tripModel, SyncMessageModelRequest syncModel);
+    void getTripId(OrderModelRequest tripModel, SyncMessageModelRequest syncModel);
 }

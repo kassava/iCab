@@ -6,27 +6,25 @@ package com.shadiz.android.icab.data.repositories.network.client.models.request.
 
 public class MessageOfTripRaterModel {
     private String type;
-    private int code1, code2;
-    private String code3, code4;
+    private int code1, code2, appear_type, user_to;
 
     /**
      *
      * @param type - clientServer_rateDriverAfterTrip_agree
-     * @param code1 - id поездки
-     * @param code2 - рейтинг
-     * @param code3
-     * @param code4
+     * @param code1
+     * @param code2
+     * @param appear_type
+     * @param user_to
      */
-    public MessageOfTripRaterModel(String type, int code1, int code2, String code3, String code4) {
+    public MessageOfTripRaterModel(String type, int code1, int code2, int appear_type, int user_to) {
         this.type = type;
         this.code1 = code1;
         this.code2 = code2;
-        this.code3 = code3;
-        this.code4 = code4;
+        this.appear_type = appear_type;
+        this.user_to = user_to;
     }
 
     public String getType() {
-
         return type;
     }
 
@@ -50,19 +48,19 @@ public class MessageOfTripRaterModel {
         this.code2 = code2;
     }
 
-    public String getCode3() {
-        return code3;
+    public int getAppear_type() {
+        return appear_type;
     }
 
-    public void setCode3(String code3) {
-        this.code3 = code3;
+    public void setAppear_type(int appear_type) {
+        this.appear_type = appear_type;
     }
 
-    public String getCode4() {
-        return code4;
+    public int getUser_to() {
+        return user_to;
     }
 
-    public void setCode4(String code4) {
-        this.code4 = code4;
+    public void setUser_to(int user_to) {
+        this.user_to = user_to;
     }
 }

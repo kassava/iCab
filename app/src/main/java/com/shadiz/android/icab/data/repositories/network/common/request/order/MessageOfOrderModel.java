@@ -1,4 +1,4 @@
-package com.shadiz.android.icab.data.repositories.network.client.models.request.create_order;
+package com.shadiz.android.icab.data.repositories.network.common.request.order;
 
 import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
 

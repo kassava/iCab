@@ -18,6 +18,7 @@ import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscription;
 
 /**
  * Created on 09.02.17.
@@ -25,9 +26,9 @@ import rx.Observable;
 
 public class NetworkManager {
     @Inject
-    private ClientService clientService;
+    ClientService clientService;
     @Inject
-    private DriverService driverService;
+    DriverService driverService;
 
     public NetworkManager() {
         this.clientService = ICabApp.getApplicationComponent().getClientService();
@@ -35,25 +36,26 @@ public class NetworkManager {
     }
 
     /**
-     * client -> server
+     * 1) client -> server (clientServer_userWantsToOrderTaxi_agree)
      *
      * @param orderModelRequest
      */
-    public void createNewOrderFromClient(OrderModelRequest orderModelRequest) {
+    public int createNewOrderFromClient(OrderModelRequest orderModelRequest) {
 //        clientService = ICabApp.getApplicationComponent().getClientService();
         Observable<OrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(clientService.getNewTripId(orderModelRequest));
 
-        RxRetrofitUtils.wrapAsync(getTripObservable)
+        Subscription subscribe = RxRetrofitUtils.wrapAsync(getTripObservable)
                 .subscribe(response -> {
                     Log.d("MainActivity", "Success " + response.getStatus());
-
+                    response.getResult().getNewId();
                 }, exception -> {
                     Log.d("MainActivity", exception.getMessage());
                 });
+        return -1;
     }
 
     /**
-     * client -> server
+     * 2) client -> server (sync message)
      *
      * @param syncMessageModelRequest
      */

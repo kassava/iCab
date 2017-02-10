@@ -50,10 +50,10 @@ public class MainPresenterImpl implements MainPresenter {
         RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
-        MessageOfOrderModel messageModel = new MessageOfOrderModel("clientServer_userWantsToOrderTaxi_agree","",  0, 0,  -1,  codesModel);
+        MessageOfOrderModel messageModel = new MessageOfOrderModel("clientServer_userWantsToOrderTaxi_agree","",  0, 0,  0,  codesModel);
         OrderModelRequest createTripModel = new OrderModelRequest(deviceModelRequest, messageModel);
         SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
-        mainInteractor.getTripId(createTripModel, syncModel);
+        mainInteractor.getTripId(createTripModel);
 //        mainInteractor.getStatusMessages(syncModel);
     }
 

@@ -4,6 +4,7 @@ package com.shadiz.android.icab.business.main;
 import android.util.Log;
 
 import com.shadiz.android.icab.ICabApp;
+import com.shadiz.android.icab.data.NetworkManager;
 import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
@@ -13,6 +14,8 @@ import com.shadiz.android.icab.data.repositories.network.common.response.message
 import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
+
+import javax.inject.Inject;
 
 import rx.Observable;
 
@@ -26,10 +29,12 @@ public class MainInteractorImpl implements MainInteractor {
     private static final String DEFAULT_VALUE = "unknown";
 
     private MainRepository mainRepository;
-    private ClientService taxiService;
+    @Inject
+    NetworkManager networkManager;
 
     public MainInteractorImpl(MainRepository mainRepository) {
         this.mainRepository = mainRepository;
+        networkManager = ICabApp.getApplicationComponent().getNetworkManager();
     }
 
     @Override
@@ -42,35 +47,12 @@ public class MainInteractorImpl implements MainInteractor {
 
     @Override
     public void getStatusMessages(SyncMessageModelRequest syncModel) {
-        taxiService = ICabApp.getApplicationComponent().getClientService();
-        Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
 
-        RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
-                .subscribe(responce -> {
-                    Log.d("MainActivity", "Success " + responce.getStatus() + " session " + responce.getResult().getSession_id());
-                }, exception -> {
-                    Log.d("MainActivity", exception.getMessage());
-                });
     }
 
     @Override
-    public void getTripId(OrderModelRequest request, SyncMessageModelRequest syncModel) {
-        taxiService = ICabApp.getApplicationComponent().getClientService();
-        Observable<OrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getNewTripId(request));
-        Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
-
-        RxRetrofitUtils.wrapAsync(getTripObservable)
-                .subscribe(response -> {
-                    Log.d("MainActivity", "Success " + response.getStatus());
-                    RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
-                            .subscribe(responce -> {
-                                Log.d("MainActivity", "Success " + responce.getStatus() + " session " + responce.getResult().getSession_id());
-                            }, exception -> {
-                                Log.d("MainActivity", exception.getMessage());
-                            });
-                }, exception -> {
-                    Log.d("MainActivity", exception.getMessage());
-                });
+    public void getTripId(OrderModelRequest request) {
+         networkManager.createNewOrderFromClient(request);
     }
 
 

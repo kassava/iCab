@@ -6,15 +6,15 @@ import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel
  * Created on 31.01.17.
  */
 
-public class MessageOfOrderModel {
+public class MessageOfOrderModel extends CodesModel {
     private String type, message_body;
     private Integer user_from;
     private Integer user_to;
     private Integer appear_type;
     private CodesModel codesModel;
 
+
     /**
-     *
      * @param type
      * @param message_body
      * @param user_from
@@ -23,12 +23,14 @@ public class MessageOfOrderModel {
      * @param codesModel
      */
     public MessageOfOrderModel(String type, String message_body, Integer user_from, Integer user_to, Integer appear_type, CodesModel codesModel) {
+
+        super(codesModel.getCode1(), codesModel.getCode2(), codesModel.getCode3(), codesModel.getCode4(), codesModel.getCode5(), codesModel.getCode6(),
+                codesModel.getCode7(), codesModel.getCode8(), codesModel.getCode9(), codesModel.getCode10());
         this.type = type;
         this.message_body = message_body;
         this.user_from = user_from;
         this.user_to = user_to;
         this.appear_type = appear_type;
-        this.codesModel = codesModel;
     }
 
     public String getType() {
@@ -79,8 +81,6 @@ public class MessageOfOrderModel {
     public void setCodesModel(CodesModel codesModel) {
         this.codesModel = codesModel;
     }
-
-
 
 
 }

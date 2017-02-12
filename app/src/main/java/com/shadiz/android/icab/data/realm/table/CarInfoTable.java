@@ -1,10 +1,11 @@
 package com.shadiz.android.icab.data.realm.table;
 
 /**
+ * Structure from logs.
  * Created on 06.02.2017.
  */
 
-public class CarInfoTable {
+public interface CarInfoTable {
 
     String ID = "id";
 

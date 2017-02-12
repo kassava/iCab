@@ -1,10 +1,11 @@
 package com.shadiz.android.icab.data.realm.table;
 
 /**
+ * Structure from logs.
  * Created on 06.02.2017.
  */
 
-public class CurrentPriceTable {
+public interface CurrentPriceTable {
 
     String ID = "id";
 

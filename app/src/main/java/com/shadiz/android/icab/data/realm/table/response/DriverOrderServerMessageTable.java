@@ -4,7 +4,7 @@ package com.shadiz.android.icab.data.realm.table.response;
  * Created on 07.02.2017.
  */
 
-public class DriverOrderServerMessageTable {
+public interface DriverOrderServerMessageTable {
 
     String ID = "id";
 

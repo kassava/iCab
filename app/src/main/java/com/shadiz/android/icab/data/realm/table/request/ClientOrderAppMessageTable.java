@@ -4,7 +4,7 @@ package com.shadiz.android.icab.data.realm.table.request;
  * Created on 07.02.2017.
  */
 
-public class ClientOrderAppMessageTable {
+public interface ClientOrderAppMessageTable {
 
     String ID = "id";
 

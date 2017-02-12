@@ -1,5 +1,7 @@
 package com.shadiz.android.icab.dagger.network;
 
+import android.app.Application;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
@@ -11,6 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Converter;
@@ -29,7 +32,13 @@ public class RetrofitModule {
     public Retrofit provideRetrofit(Retrofit.Builder builder) {
         return builder.baseUrl("http://icab.asia/api/").build();
     }
-
+    @Provides
+    @Singleton
+    Cache provideHttpCache(Application application) {
+        int cacheSize = 10 * 1024 * 1024;
+        Cache cache = new Cache(application.getCacheDir(), cacheSize);
+        return cache;
+    }
     @Provides
     @Singleton
     public Retrofit.Builder provideRetrofitBuilder(Converter.Factory converterFactory) {

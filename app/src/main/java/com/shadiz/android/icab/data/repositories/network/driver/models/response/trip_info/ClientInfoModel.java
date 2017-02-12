@@ -15,4 +15,20 @@ public class ClientInfoModel extends BaseUserInfo{
     @SerializedName("surname")
     @Expose
     private Integer surname;
+
+    public Integer getLogin() {
+        return login;
+    }
+
+    public void setLogin(Integer login) {
+        this.login = login;
+    }
+
+    public Integer getSurname() {
+        return surname;
+    }
+
+    public void setSurname(Integer surname) {
+        this.surname = surname;
+    }
 }

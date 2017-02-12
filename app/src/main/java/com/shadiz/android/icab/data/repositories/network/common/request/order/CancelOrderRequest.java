@@ -2,10 +2,9 @@ package com.shadiz.android.icab.data.repositories.network.common.request.order;
 
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderMessageModel;
 
 /**
- * Created by oldman on 08.02.17.
+ * Created  on 12.02.17.
  */
 
 public class CancelOrderRequest extends BaseModelRequest {

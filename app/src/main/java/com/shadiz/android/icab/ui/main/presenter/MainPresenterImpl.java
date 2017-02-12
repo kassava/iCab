@@ -2,6 +2,8 @@ package com.shadiz.android.icab.ui.main.presenter;
 
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.business.main.MainInteractor;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
@@ -50,9 +52,32 @@ public class MainPresenterImpl implements MainPresenter {
         RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
-        MessageOfOrderModel messageModel = new MessageOfOrderModel("clientServer_userWantsToOrderTaxi_agree","",  0, 0,  0,  codesModel);
-        OrderModelRequest createTripModel = new OrderModelRequest(deviceModelRequest, messageModel);
-        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
+        MessageOfOrderModel messageModel = new MessageOfOrderModel();
+        messageModel.setCode2(location);
+        messageModel.setCode4(location);
+        messageModel.setCode5(1);
+        messageModel.setCode7(0);
+        messageModel.setCode8(1);
+        messageModel.setCode9(0);
+        messageModel.setCode10(requirementToTheDriverModel);
+        messageModel.setAppear_type(0);
+        messageModel.setUser_from(813);
+        messageModel.setUser_to(823);
+        messageModel.setType("clientServer_userWantsToOrderTaxi_agree");
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+
+
+        OrderModelRequest createTripModel = new OrderModelRequest(messageModel, "3af83a99f6f8ad7", "3333333333", "android");
+//        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
+        try {
+
+
+            System.out.println( gson.toJson(createTripModel));
+
+        } catch (Exception e) {
+            System.out.println("invalid json format");
+        }
         mainInteractor.getTripId(createTripModel);
 //        mainInteractor.getStatusMessages(syncModel);
     }

@@ -1,12 +1,26 @@
 package com.shadiz.android.icab.data.repositories.network.common;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by oldman on 31.01.17.
  */
 
 public class LocationModelRequest {
-    double latitude, longitude;
+    @SerializedName("geocode")
+    @Expose
+    String geocode;
+    @SerializedName("latitude")
+    @Expose
+    double latitude;
+    @SerializedName("longitude")
+    @Expose
+    double longitude;
+    @SerializedName("precision")
+    @Expose
     int precision;
+
     public LocationModelRequest(double latitude, double longitude, int precision, String geocode) {
         this.latitude = latitude;
         this.longitude = longitude;
@@ -46,6 +60,5 @@ public class LocationModelRequest {
         this.latitude = latitude;
     }
 
-    String geocode;
 
 }

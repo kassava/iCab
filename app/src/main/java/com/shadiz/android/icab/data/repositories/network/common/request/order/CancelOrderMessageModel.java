@@ -9,7 +9,6 @@ import com.shadiz.android.icab.data.repositories.network.driver.models.request.c
 public class CancelOrderMessageModel extends OrderMessageModel {
     private String code2;
 
-
     /**
      * @param type        - driverServer_userWantsToOrderTaxi_agree/driverServer_userWantsToOrderTaxi_disagree
      * @param code1

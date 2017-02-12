@@ -14,20 +14,22 @@ public class CodesModel {
     private LocationModelRequest code2, code4;
     private RequirementToTheDriverModel code10;
 
-    /**
-     *
-     * @param code1 - координаты, где забрать клиента ( longitude / latitude / precision / geocode )
-     * @param code2 - время, когда нужно забрать клиента ( Y-m-d H:i:s формат UTC )
-     * @param code3 - координаты доставки ( longitude / latitude / precision / geocode )
-     * @param code4 -  (JSON) - координаты доставки ( longitude / latitude / precision / geocode )
-     * @param code5 - количество мест, которое запросил клиент ( от 1 до 6 )
-     * @param code6 - комментарий клиента ( опционально )
-     * @param code7 - длинна поездки в метрах
-     * @param code8 - длительность поездки в секундах
-     * @param code9 - ID водилы кому отослать заказ, или зафейлить если он не примет.
-     * @param code10(JSON) - фильтр поиска (radius / rateFrom / rateTo / acceptCC) (left empty will fill this up with system values from config).
-     * code10 example:{"radius":"20000","rateFrom":0,"rateTo":7,"acceptCC":1}
-     */
+
+
+//    /**
+//     *
+//     * @param code1 - координаты, где забрать клиента ( longitude / latitude / precision / geocode )
+//     * @param code2 - время, когда нужно забрать клиента ( Y-m-d H:i:s формат UTC )
+//     * @param code3 - координаты доставки ( longitude / latitude / precision / geocode )
+//     * @param code4 -  (JSON) - координаты доставки ( longitude / latitude / precision / geocode )
+//     * @param code5 - количество мест, которое запросил клиент ( от 1 до 6 )
+//     * @param code6 - комментарий клиента ( опционально )
+//     * @param code7 - длинна поездки в метрах
+//     * @param code8 - длительность поездки в секундах
+//     * @param code9 - ID водилы кому отослать заказ, или зафейлить если он не примет.
+//     * @param code10(JSON) - фильтр поиска (radius / rateFrom / rateTo / acceptCC) (left empty will fill this up with system values from config).
+//     * code10 example:{"radius":"20000","rateFrom":0,"rateTo":7,"acceptCC":1}
+//     */
     public CodesModel(String code1, LocationModelRequest code2, String code3, LocationModelRequest code4, int code5, String code6, int code7, int code8, int code9, RequirementToTheDriverModel code10) {
         this.code1 = code1;
         this.code3 = code3;
@@ -40,6 +42,7 @@ public class CodesModel {
         this.code2 = code2;
         this.code10 = code10;
     }
+
 
     public String getCode1() {
 

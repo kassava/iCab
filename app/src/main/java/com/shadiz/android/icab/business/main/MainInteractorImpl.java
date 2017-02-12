@@ -4,18 +4,16 @@ package com.shadiz.android.icab.business.main;
 import android.util.Log;
 
 import com.shadiz.android.icab.ICabApp;
-import com.shadiz.android.icab.data.NetworkManager;
+import com.shadiz.android.icab.business.main.listener.OrderListener;
 import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
-
-import javax.inject.Inject;
 
 import rx.Observable;
 
@@ -23,18 +21,16 @@ import rx.Observable;
  * Created on 28.01.2017.
  */
 
-public class MainInteractorImpl implements MainInteractor {
+public class MainInteractorImpl implements MainInteractor, OrderListener {
 
     private static final String EMPTY_STRING = "";
     private static final String DEFAULT_VALUE = "unknown";
 
     private MainRepository mainRepository;
-    @Inject
-    NetworkManager networkManager;
+    private ClientService taxiService;
 
     public MainInteractorImpl(MainRepository mainRepository) {
         this.mainRepository = mainRepository;
-        networkManager = ICabApp.getApplicationComponent().getNetworkManager();
     }
 
     @Override
@@ -47,12 +43,30 @@ public class MainInteractorImpl implements MainInteractor {
 
     @Override
     public void getStatusMessages(SyncMessageModelRequest syncModel) {
+        taxiService = ICabApp.getApplicationComponent().getTaxiService();
+        Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
 
+        RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
+                .subscribe(responce -> {
+                    Log.d("MainActivity", "Success " + responce.getStatus() + " session " + responce.getResult().getSession_id());
+                }, exception -> {
+                    Log.d("MainActivity", exception.getMessage());
+                });
     }
 
     @Override
     public void getTripId(OrderModelRequest request) {
-         networkManager.createNewOrderFromClient(request);
+        taxiService = ICabApp.getApplicationComponent().getTaxiService();
+
+        Observable<NewOrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getNewTripId(request));
+        RxRetrofitUtils.wrapAsync(getTripObservable)
+                .subscribe(response -> {
+                    Log.d("MainActivity", "Success " + response.getStatus());
+//                    listener.onSetNewIdOrder(response);
+                }, exception -> {
+                    Log.d("MainActivity", exception.getMessage());
+//                    listener.onErrorRequest(exception);
+                });
     }
 
 
@@ -68,4 +82,14 @@ public class MainInteractorImpl implements MainInteractor {
     }
 
 
+    @Override
+    public void onSetNewIdOrder(NewOrderCreatorModelResponse newOrderCreatorModelResponse) {
+
+    }
+
+    @Override
+    public void onErrorRequest(Throwable exception) {
+        Log.d("MainInteractorImpl", exception.getMessage());
+
+    }
 }

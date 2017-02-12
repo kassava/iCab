@@ -4,10 +4,11 @@ package com.shadiz.android.icab.data.repositories.network.client;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order.TripRaterRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
@@ -39,8 +40,10 @@ public class ClientService {
      * @param tripModelRequest
      * @return
      */
-    public Call<OrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
-        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(), new Gson().toJson(tripModelRequest.getMessage()));
+    public Call<NewOrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(), gson.toJson(tripModelRequest.getMessage()));
     }
 
     /**

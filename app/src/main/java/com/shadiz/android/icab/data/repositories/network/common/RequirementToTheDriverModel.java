@@ -1,12 +1,25 @@
 package com.shadiz.android.icab.data.repositories.network.common;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by oldman on 31.01.17.
  */
 
 public class RequirementToTheDriverModel {
+    @SerializedName("acceptCC")
+    @Expose
+    private Integer acceptCC;
+    @SerializedName("radius")
+    @Expose
     private String radius;
-    private Integer rateFrom, rateTo, acceptCC;
+    @SerializedName("rateFrom")
+    @Expose
+    private Integer rateFrom;
+    @SerializedName("rateTo")
+    @Expose
+    private Integer rateTo;
 
     public RequirementToTheDriverModel(String radius, Integer rateFrom, Integer rateTo, Integer acceptCC) {
         this.radius = radius;

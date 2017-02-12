@@ -9,59 +9,15 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResult;
  */
 
 public class OrderCreatorResult extends BaseResult {
-    @SerializedName("newId")
+    @SerializedName("trip_id")
     @Expose
-    private Integer newId;
-    @SerializedName("currency")
-    @Expose
-    private Integer currency;
-    @SerializedName("cost")
-    @Expose
-    private Integer cost;
-    @SerializedName("duration")
-    @Expose
-    private Integer duration;
-    @SerializedName("mileage")
-    @Expose
-    private Integer mileage;
+    private String tripId;
 
-    public Integer getNewId() {
-        return newId;
+    public String getTripId() {
+        return tripId;
     }
 
-    public void setNewId(Integer newId) {
-        this.newId = newId;
-    }
-
-    public Integer getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Integer currency) {
-        this.currency = currency;
-    }
-
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public Integer getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(Integer mileage) {
-        this.mileage = mileage;
+    public void setTripId(String tripId) {
+        this.tripId = tripId;
     }
 }

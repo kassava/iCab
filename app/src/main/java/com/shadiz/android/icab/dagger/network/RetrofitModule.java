@@ -7,8 +7,6 @@ import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.lang.reflect.Modifier;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -32,6 +30,7 @@ public class RetrofitModule {
     public Retrofit provideRetrofit(Retrofit.Builder builder) {
         return builder.baseUrl("http://icab.asia/api/").build();
     }
+
     @Provides
     @Singleton
     Cache provideHttpCache(Application application) {
@@ -39,6 +38,7 @@ public class RetrofitModule {
         Cache cache = new Cache(application.getCacheDir(), cacheSize);
         return cache;
     }
+
     @Provides
     @Singleton
     public Retrofit.Builder provideRetrofitBuilder(Converter.Factory converterFactory) {
@@ -48,8 +48,6 @@ public class RetrofitModule {
         httpClient.addInterceptor(logging);
 
         return new Retrofit.Builder().addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-//                .addConverterFactory(JacksonConverterFactory.create())
-
                 .addConverterFactory(converterFactory).client(httpClient.build());
 
     }
@@ -66,6 +64,7 @@ public class RetrofitModule {
         return new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .setPrettyPrinting()
+                .setLenient()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .serializeNulls()
                 .create();

@@ -39,7 +39,7 @@ public interface ClientApi {
      * login;
      * trip_id
      */
-
+    @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
     Call<NewOrderCreatorModelResponse> getTripId(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);

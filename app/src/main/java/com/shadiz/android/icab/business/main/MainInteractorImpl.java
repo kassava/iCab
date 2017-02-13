@@ -55,12 +55,12 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
         Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(clientService.getStatusMessage(syncModel));
         RxSchedulersAbs.wrapAsync(syncMessageModelObservable)
                 .subscribe(responce -> {
-                    Log.d("MainInteractorImpl", "Success " + responce.getStatus() + " session ");
-                    List<MessagesModel> messages = responce.getResult().getMessages();
-                    for(int i=0; i< messages.size(); i++ ) {
+                    Log.d("MainInteractorImpl", "Success " + responce.getStatus() + " session " + responce.getResult().getSessionId());
+//                    List<MessagesModel> messages = responce.getResult().getMessages();
+//                    for(int i=0; i< messages.size(); i++ ) {
 //                        locationModelResponse = gson.fromJson(messages.get(i).getCode2().toString(), LocationModelResponse.class);
-                        Log.d("MainInteractorImpl", messages.get(i).getCode2().toString());
-                    }
+//                        Log.d("MainInteractorImpl", messages.get(i).getCode2().toString());
+//                    }
                 }, exception -> {
                     Log.d("MainInteractorImpl", "exception " + exception.getMessage());
                 });
@@ -68,17 +68,18 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
 
     @Override
     public Observable<String> getTripId(OrderModelRequest request) {
-        return mainRepository.getIdNewOrder(request)
-                .onErrorResumeNext(throwable -> Observable.error(
-                        new MainInteractorException("Incorrect drivers info")
-                )).map(this::getIdOrder);
-
+//        return mainRepository.getIdNewOrder(request)
+//                .onErrorResumeNext(throwable -> Observable.error(
+//                        new MainInteractorException("Incorrect drivers info")
+//                )).map(this::getIdOrder);
+//
+        return null;
     }
     @Override
     public void getTripID(OrderModelRequest request) {
         RxSchedulersAbs.wrapAsync(mainRepository.getIdNewOrder(request))
                 .subscribe(response -> {
-                    Log.d("MainActivity", "Success " + response.getStatus() + " " + response.getResult().getTripId());
+                    Log.d("MainActivity", "Success " + response.getStatus());
                 }, exception -> {
                     Log.d("MainActivity", exception.getMessage());
                 });
@@ -95,8 +96,8 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
         );
     }
 
-    private String getIdOrder(NewOrderCreatorModelResponse orderModelRequest) {
-        return orderModelRequest.getResult().getTripId(); }
+//    private String getIdOrder(NewOrderCreatorModelResponse orderModelRequest) {
+//        return orderModelRequest.getResult().getTripId(); }
 
     @Override
     public void onSetNewIdOrder(NewOrderCreatorModelResponse newOrderCreatorModelResponse) {

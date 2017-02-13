@@ -8,10 +8,16 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResult;
  * Created by 31.01.17.
  */
 
-public class OrderCreatorResult extends BaseResult {
+public class OrderCreatorResult {
     @SerializedName("trip_id")
     @Expose
     private String tripId;
+    @SerializedName("session_id")
+    @Expose
+    private String sessionId;
+    @SerializedName("login")
+    @Expose
+    private String login;
 
     public String getTripId() {
         return tripId;
@@ -19,5 +25,21 @@ public class OrderCreatorResult extends BaseResult {
 
     public void setTripId(String tripId) {
         this.tripId = tripId;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

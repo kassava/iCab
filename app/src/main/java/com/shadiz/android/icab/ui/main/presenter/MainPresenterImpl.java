@@ -68,7 +68,6 @@ public class MainPresenterImpl implements MainPresenter {
         messageModel.setCode10(gson.toJson(requirementToTheDriverModel));
         messageModel.setAppear_type("0");
         messageModel.setUser_from("813");
-        messageModel.setUser_to("823");
         messageModel.setType("clientServer_userWantsToOrderTaxi_agree");
 
 

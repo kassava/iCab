@@ -19,10 +19,10 @@ import rx.Observable;
  */
 
 public class MainRepositoryImpl implements MainRepository {
-    private ClientService taxiService;
+    private ClientService clientService;
 
     public MainRepositoryImpl() {
-        taxiService = ICabApp.getApplicationComponent().getClientService();
+        clientService = ICabApp.getApplicationComponent().getClientService();
 
     }
 
@@ -36,7 +36,7 @@ public class MainRepositoryImpl implements MainRepository {
 
     @Override
     public Observable<NewOrderCreatorModelResponse> getIdNewOrder(OrderModelRequest request) {
-        return RxRetrofitUtils.wrapRetrofitCall(taxiService.getNewTripId(request));
+        return RxRetrofitUtils.wrapRetrofitCall(clientService.getNewTripId(request));
     }
 
 

@@ -33,7 +33,6 @@ public class RxRetrofitUtils {
             }
             if (execute.isSuccessful()) {
                 Log.d("RxRetrofitUtils", "isSuccessful ");
-
                 subscriber.onNext(execute.body());
             } else {
                 subscriber.onError(new TaxiError(execute.errorBody()));

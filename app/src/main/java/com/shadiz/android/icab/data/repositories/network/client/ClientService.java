@@ -2,6 +2,7 @@ package com.shadiz.android.icab.data.repositories.network.client;
 
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,6 +44,7 @@ public class ClientService {
     public Call<NewOrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
+        Log.d("ClientService", gson.toJson(tripModelRequest.getMessage()));
         return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(),gson.toJson(tripModelRequest.getMessage()));
     }
 

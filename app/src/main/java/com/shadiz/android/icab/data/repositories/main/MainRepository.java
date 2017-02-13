@@ -2,6 +2,7 @@ package com.shadiz.android.icab.data.repositories.main;
 
 
 import com.shadiz.android.icab.business.main.listener.OrderListener;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 
@@ -15,6 +16,6 @@ public interface MainRepository {
 
     Observable<DriverModel> getDrivers();
 
-    void getIdNewOrder(OrderModelRequest request, OrderListener listener);
+    Observable<NewOrderCreatorModelResponse> getIdNewOrder(OrderModelRequest request);
 
 }

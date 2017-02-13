@@ -20,4 +20,5 @@ public class SyncMessageModelResponse extends BaseResponse {
     public void setResult(SyncMessageResult result) {
         this.result = result;
     }
+
 }

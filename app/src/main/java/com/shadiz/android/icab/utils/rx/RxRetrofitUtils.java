@@ -25,25 +25,19 @@ public class RxRetrofitUtils {
 
             try {
                 execute = call.execute();
+                Log.d("RxRetrofitUtils", "execute " + execute.message());
+
             } catch (IOException e) {
                 subscriber.onError(e);
                 return;
             }
             if (execute.isSuccessful()) {
+                Log.d("RxRetrofitUtils", "isSuccessful ");
+
                 subscriber.onNext(execute.body());
             } else {
                 subscriber.onError(new TaxiError(execute.errorBody()));
             }
         });
-    }
-
-    public static <T> Observable<T> wrapAsync(Observable<T> observable) {
-        return wrapAsync(observable, Schedulers.io());
-    }
-
-    public static <T> Observable<T> wrapAsync(Observable<T> observable, Scheduler scheduler) {
-        return observable
-                .subscribeOn(scheduler)
-                .observeOn(AndroidSchedulers.mainThread());
     }
 }

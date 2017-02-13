@@ -16,6 +16,7 @@ import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.ui.main.views.MainView;
 import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;
 
+import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -48,37 +49,38 @@ public class MainPresenterImpl implements MainPresenter {
     public void clickToOrderButton() {
         mainView.showProgress();
 
+
+
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+
         LocationModelRequest location = new LocationModelRequest(-122.084, 37.422, 12, "Luna");
         RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
         CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
         MessageOfOrderModel messageModel = new MessageOfOrderModel();
-        messageModel.setCode2(location);
-        messageModel.setCode4(location);
-        messageModel.setCode5(1);
-        messageModel.setCode7(0);
-        messageModel.setCode8(1);
-        messageModel.setCode9(0);
-        messageModel.setCode10(requirementToTheDriverModel);
-        messageModel.setAppear_type(0);
-        messageModel.setUser_from(813);
-        messageModel.setUser_to(823);
+        messageModel.setCode2(gson.toJson(location));
+        messageModel.setCode4(gson.toJson(location));
+        messageModel.setCode5("1");
+        messageModel.setCode7("0");
+        messageModel.setCode8("1");
+        messageModel.setCode9("0");
+        messageModel.setCode10(gson.toJson(requirementToTheDriverModel));
+        messageModel.setAppear_type("0");
+        messageModel.setUser_from("813");
+        messageModel.setUser_to("823");
         messageModel.setType("clientServer_userWantsToOrderTaxi_agree");
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
 
 
         OrderModelRequest createTripModel = new OrderModelRequest(messageModel, "3af83a99f6f8ad7", "3333333333", "android");
-//        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
-        try {
+        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
 
+//        Subscription loadFreeDriversSubscription = mainInteractor.getTripId(createTripModel)
+//                .compose(rxSchedulersAbs.getIOToMainTransformer())
+//                .subscribe(this::handleCreateOrder, this::handleErrorLoadPersonalInfo);
 
-            System.out.println( gson.toJson(createTripModel));
-
-        } catch (Exception e) {
-            System.out.println("invalid json format");
-        }
-        mainInteractor.getTripId(createTripModel);
+//        compositeSubscription.add(loadFreeDriversSubscription);
+        mainInteractor.getTripID(createTripModel);
 //        mainInteractor.getStatusMessages(syncModel);
     }
 
@@ -86,9 +88,9 @@ public class MainPresenterImpl implements MainPresenter {
         mainView.showDrivers(fullDriverDataModel.toString());
     }
 
-    private void handleSuccessLoadPersonalInfo(@NonNull FullDriverDataModel fullDriverDataModel) {
+    private void handleCreateOrder(@NonNull int Id) {
         // view actions
-        setFreeDriversToView(fullDriverDataModel);
+//        setFreeDriversToView(fullDriverDataModel);
         // hide progress
         mainView.hideProgress();
     }

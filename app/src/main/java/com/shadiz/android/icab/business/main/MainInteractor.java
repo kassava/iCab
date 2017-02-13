@@ -18,5 +18,6 @@ public interface MainInteractor {
      */
     Observable<FullDriverDataModel> getFreeDrivers();
     void getStatusMessages(SyncMessageModelRequest syncModel);
-    void getTripId(OrderModelRequest tripModel);
+    Observable<String> getTripId(OrderModelRequest tripModel);
+    void getTripID(OrderModelRequest tripModel);
 }

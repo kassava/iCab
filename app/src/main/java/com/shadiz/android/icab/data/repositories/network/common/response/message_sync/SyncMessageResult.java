@@ -13,20 +13,20 @@ import java.util.List;
 public class SyncMessageResult {
     @SerializedName("session_id")
     @Expose
-    private String session_id;
+    private String sessionId;
     @SerializedName("login")
     @Expose
     private String login;
     @SerializedName("messages")
     @Expose
-    private List<MessagesModel>  messages;
+    private List<MessagesModel> messages = null;
 
-    public String getSession_id() {
-        return session_id;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setSession_id(String session_id) {
-        this.session_id = session_id;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public String getLogin() {
@@ -37,11 +37,11 @@ public class SyncMessageResult {
         this.login = login;
     }
 
-    public List<MessagesModel> getMessageModel() {
+    public List<MessagesModel> getMessages() {
         return messages;
     }
 
-    public void setMessageModel(List<MessagesModel> messages) {
+    public void setMessages(List<MessagesModel> messages) {
         this.messages = messages;
     }
 }

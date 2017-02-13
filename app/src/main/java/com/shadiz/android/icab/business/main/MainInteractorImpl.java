@@ -10,10 +10,15 @@ import com.shadiz.android.icab.data.repositories.network.client.ClientService;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.MessagesModel;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
+import com.shadiz.android.icab.data.repositories.network.driver.DriverService;
 import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
+import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -27,10 +32,13 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
     private static final String DEFAULT_VALUE = "unknown";
 
     private MainRepository mainRepository;
-    private ClientService taxiService;
+    private ClientService clientService;
+    private DriverService driverService;
 
     public MainInteractorImpl(MainRepository mainRepository) {
         this.mainRepository = mainRepository;
+        clientService = ICabApp.getApplicationComponent().getClientService();
+        driverService = ICabApp.getApplicationComponent().getDriverService();
     }
 
     @Override
@@ -43,32 +51,38 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
 
     @Override
     public void getStatusMessages(SyncMessageModelRequest syncModel) {
-        taxiService = ICabApp.getApplicationComponent().getTaxiService();
-        Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getStatusMessage(syncModel));
-
-        RxRetrofitUtils.wrapAsync(syncMessageModelObservable)
+        clientService = ICabApp.getApplicationComponent().getClientService();
+        Observable<SyncMessageModelResponse> syncMessageModelObservable = RxRetrofitUtils.wrapRetrofitCall(clientService.getStatusMessage(syncModel));
+        RxSchedulersAbs.wrapAsync(syncMessageModelObservable)
                 .subscribe(responce -> {
-                    Log.d("MainActivity", "Success " + responce.getStatus() + " session " + responce.getResult().getSession_id());
+                    Log.d("MainInteractorImpl", "Success " + responce.getStatus() + " session ");
+                    List<MessagesModel> messages = responce.getResult().getMessages();
+                    for(int i=0; i< messages.size(); i++ ) {
+//                        locationModelResponse = gson.fromJson(messages.get(i).getCode2().toString(), LocationModelResponse.class);
+                        Log.d("MainInteractorImpl", messages.get(i).getCode2().toString());
+                    }
                 }, exception -> {
-                    Log.d("MainActivity", exception.getMessage());
+                    Log.d("MainInteractorImpl", "exception " + exception.getMessage());
                 });
     }
 
     @Override
-    public void getTripId(OrderModelRequest request) {
-        taxiService = ICabApp.getApplicationComponent().getTaxiService();
+    public Observable<String> getTripId(OrderModelRequest request) {
+        return mainRepository.getIdNewOrder(request)
+                .onErrorResumeNext(throwable -> Observable.error(
+                        new MainInteractorException("Incorrect drivers info")
+                )).map(this::getIdOrder);
 
-        Observable<NewOrderCreatorModelResponse> getTripObservable = RxRetrofitUtils.wrapRetrofitCall(taxiService.getNewTripId(request));
-        RxRetrofitUtils.wrapAsync(getTripObservable)
+    }
+    @Override
+    public void getTripID(OrderModelRequest request) {
+        RxSchedulersAbs.wrapAsync(mainRepository.getIdNewOrder(request))
                 .subscribe(response -> {
-                    Log.d("MainActivity", "Success " + response.getStatus());
-//                    listener.onSetNewIdOrder(response);
+                    Log.d("MainActivity", "Success " + response.getStatus() + " " + response.getResult().getTripId());
                 }, exception -> {
                     Log.d("MainActivity", exception.getMessage());
-//                    listener.onErrorRequest(exception);
                 });
     }
-
 
     private FullDriverDataModel convert(DriverModel driverModel) {
         return new FullDriverDataModel(
@@ -81,6 +95,8 @@ public class MainInteractorImpl implements MainInteractor, OrderListener {
         );
     }
 
+    private String getIdOrder(NewOrderCreatorModelResponse orderModelRequest) {
+        return orderModelRequest.getResult().getTripId(); }
 
     @Override
     public void onSetNewIdOrder(NewOrderCreatorModelResponse newOrderCreatorModelResponse) {

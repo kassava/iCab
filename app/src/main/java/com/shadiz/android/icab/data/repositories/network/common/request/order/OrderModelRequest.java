@@ -43,11 +43,6 @@ public class OrderModelRequest {
     public void setDevice_platform(String device_platform) {
         this.device_platform = device_platform;
     }
-
-//    public OrderModelRequest(DeviceModelRequest deviceModelRequest, MessageOfOrderModel message) {
-//        super(deviceModelRequest);
-//        this.message = message;
-//    }
     public MessageOfOrderModel getMessage() {
         return message;
     }

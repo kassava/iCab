@@ -48,7 +48,10 @@ public class RetrofitModule {
         httpClient.addInterceptor(logging);
 
         return new Retrofit.Builder().addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .addConverterFactory(JacksonConverterFactory.create())
+
                 .addConverterFactory(converterFactory).client(httpClient.build());
+
     }
 
     @Provides

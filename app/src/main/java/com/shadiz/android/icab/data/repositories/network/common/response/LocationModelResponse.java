@@ -10,66 +10,46 @@ import com.google.gson.annotations.SerializedName;
 public class LocationModelResponse {
     @SerializedName("longitude")
     @Expose
-    private double longitude;
+    private String longitude;
     @SerializedName("latitude")
     @Expose
-    private double latitude;
+    private String latitude;
+    @SerializedName("geocode")
+    @Expose
+    private String geocode;
     @SerializedName("precision")
     @Expose
-    private double precision;
-    @SerializedName("bearing")
-    @Expose
-    private double bearing;
-    @SerializedName("distance")
-    @Expose
-    private Integer distance;
+    private String precision;
 
-    public LocationModelResponse(double longitude, double latitude, double precision, double bearing, Integer distance) {
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.precision = precision;
-        this.bearing = bearing;
-        this.distance = distance;
-    }
-
-    public double getLongitude() {
-
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public double getPrecision() {
+    public String getGeocode() {
+        return geocode;
+    }
+
+    public void setGeocode(String geocode) {
+        this.geocode = geocode;
+    }
+
+    public String getPrecision() {
         return precision;
     }
 
-    public void setPrecision(double precision) {
+    public void setPrecision(String precision) {
         this.precision = precision;
-    }
-
-    public double getBearing() {
-        return bearing;
-    }
-
-    public void setBearing(double bearing) {
-        this.bearing = bearing;
-    }
-
-    public Integer getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Integer distance) {
-        this.distance = distance;
     }
 }

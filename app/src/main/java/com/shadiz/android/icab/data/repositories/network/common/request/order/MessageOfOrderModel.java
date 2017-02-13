@@ -1,10 +1,7 @@
 package com.shadiz.android.icab.data.repositories.network.common.request.order;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
-import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
 
 /**
  * Created on 31.01.17.
@@ -12,13 +9,13 @@ import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel
 
 public class MessageOfOrderModel {
     String type, message_body;
-    Integer user_from;
-    Integer user_to;
-    Integer appear_type;
+    String user_from;
+    String user_to;
+    String appear_type;
     String code1, code3, code6;
-    int code5, code7, code8, code9;
-    LocationModelRequest code2, code4;
-    RequirementToTheDriverModel code10;
+    String code5, code7, code8, code9;
+    String code2, code4;
+    String code10;
 //    \"type\" : \"clientServer_userWantsToOrderTaxi_agree\", " +
 //            " \"appear_type\" : 0, " +
 //            " \"code10\" : \"{  \\\"acceptCC\\\" : false,  \\\"rateFrom\\\" : 0,  \\\"rateTo\\\" : 5,  \\\"radius\\\" : 5000}\"," +
@@ -38,7 +35,7 @@ public class MessageOfOrderModel {
     public MessageOfOrderModel() {
     }
 
-    public MessageOfOrderModel(String type, String message_body, Integer user_from, Integer user_to, Integer appear_type, String code1, String code3, String code6, int code5, int code7, int code8, int code9, LocationModelRequest code2, LocationModelRequest code4, RequirementToTheDriverModel code10) {
+    public MessageOfOrderModel(String type, String message_body, String user_from, String user_to, String appear_type, String code1, String code3, String code6, String code5, String code7, String code8, String code9, String code2, String code4, String code10) {
         this.type = type;
         this.message_body = message_body;
         this.user_from = user_from;
@@ -73,30 +70,29 @@ public class MessageOfOrderModel {
         this.message_body = message_body;
     }
 
-    public Integer getUser_from() {
+    public String getUser_from() {
         return user_from;
     }
 
-    public void setUser_from(Integer user_from) {
+    public void setUser_from(String user_from) {
         this.user_from = user_from;
     }
 
-    public Integer getUser_to() {
+    public String getUser_to() {
         return user_to;
     }
 
-    public void setUser_to(Integer user_to) {
+    public void setUser_to(String user_to) {
         this.user_to = user_to;
     }
 
-    public Integer getAppear_type() {
+    public String getAppear_type() {
         return appear_type;
     }
 
-    public void setAppear_type(Integer appear_type) {
+    public void setAppear_type(String appear_type) {
         this.appear_type = appear_type;
     }
-
 
     public String getCode1() {
         return code1;
@@ -122,59 +118,59 @@ public class MessageOfOrderModel {
         this.code6 = code6;
     }
 
-    public int getCode5() {
+    public String getCode5() {
         return code5;
     }
 
-    public void setCode5(int code5) {
+    public void setCode5(String code5) {
         this.code5 = code5;
     }
 
-    public int getCode7() {
+    public String getCode7() {
         return code7;
     }
 
-    public void setCode7(int code7) {
+    public void setCode7(String code7) {
         this.code7 = code7;
     }
 
-    public int getCode8() {
+    public String getCode8() {
         return code8;
     }
 
-    public void setCode8(int code8) {
+    public void setCode8(String code8) {
         this.code8 = code8;
     }
 
-    public int getCode9() {
+    public String getCode9() {
         return code9;
     }
 
-    public void setCode9(int code9) {
+    public void setCode9(String code9) {
         this.code9 = code9;
     }
 
-    public LocationModelRequest getCode2() {
+    public String getCode2() {
         return code2;
     }
 
-    public void setCode2(LocationModelRequest code2) {
+    public void setCode2(String code2) {
         this.code2 = code2;
     }
 
-    public LocationModelRequest getCode4() {
+    public String getCode4() {
         return code4;
     }
 
-    public void setCode4(LocationModelRequest code4) {
+    public void setCode4(String code4) {
         this.code4 = code4;
     }
 
-    public RequirementToTheDriverModel getCode10() {
+    public String getCode10() {
         return code10;
     }
 
-    public void setCode10(RequirementToTheDriverModel code10) {
+    public void setCode10(String code10) {
         this.code10 = code10;
     }
 }

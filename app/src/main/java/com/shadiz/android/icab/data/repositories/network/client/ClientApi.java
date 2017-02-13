@@ -10,6 +10,7 @@ import com.shadiz.android.icab.data.repositories.network.client.models.response.
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
@@ -72,6 +73,7 @@ public interface ClientApi {
      * date_created: "2017-02-01 06:55:40",
      * date_sent: "2017-02-01 06:55:40"
      */
+    @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("/api/messageSync.php")
     Call<SyncMessageModelResponse> getStatusMessage(@Field("date_from") String date, @Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android);

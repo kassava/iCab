@@ -43,7 +43,7 @@ public class ClientService {
     public Call<NewOrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(), gson.toJson(tripModelRequest.getMessage()));
+        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(),gson.toJson(tripModelRequest.getMessage()));
     }
 
     /**

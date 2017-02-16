@@ -8,9 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order.TripRaterRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
@@ -45,7 +44,7 @@ public class ClientService {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         Log.d("ClientService", gson.toJson(tripModelRequest.getMessage()));
-        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(),gson.toJson(tripModelRequest.getMessage()));
+        return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(), gson.toJson(tripModelRequest.getMessage()));
     }
 
     /**
@@ -74,7 +73,7 @@ public class ClientService {
      * @param tripRaterRequest
      * @return
      */
-    public Call<TripRaterResponse> setRateDriverAfterTrip(TripRaterRequest tripRaterRequest) {
+    public Call<NewOrderCreatorModelResponse> setRateDriverAfterTrip(TripRaterRequest tripRaterRequest) {
         return clientApi.setRateDriverAfterTrip(tripRaterRequest.getDevice_uuid(), tripRaterRequest.getLogin(), tripRaterRequest.getDevice_platform(), new Gson().toJson(tripRaterRequest.getMessage()));
     }
 

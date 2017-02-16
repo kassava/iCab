@@ -1,8 +1,10 @@
 package com.shadiz.android.icab.data.repositories.main;
 
 
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
@@ -18,6 +20,8 @@ import rx.Observable;
 public interface MainRepository {
 
     Observable<DriverModel> getDrivers();
+
+    Observable<TripInfoResponse> getClientTripsInfo(ClientTripsInfoRequest request);
 
     Observable<NewOrderCreatorModelResponse> getIdNewOrder(OrderModelRequest request);
 

@@ -29,7 +29,9 @@ public class MainFragment extends Fragment implements MainView {
     @Inject
     MainPresenter mainPresenter;
 
-    private TextView orderTaxiTextView, cancelOrderTextView, statusDriverOrdersTextView, statusClientOrdersTextView;
+    private TextView clientUserWantsToOrderTaxiAgree, clientWantsCancelOrderTextView,
+            clientStatusOrdersTextView, clientGetTripsInfoTextView, clientRateDriverAfterTripTextView,
+    driverMessageSyncTextView;
     private ProgressBar progressBar;
     private CoordinatorLayout coordinatorLayout;
 
@@ -45,17 +47,24 @@ public class MainFragment extends Fragment implements MainView {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        orderTaxiTextView = (TextView) view.findViewById(R.id.order);
-        orderTaxiTextView.setOnClickListener(v -> mainPresenter.clientClickToCreateOrderButton());
+        clientGetTripsInfoTextView = (TextView) view.findViewById(R.id.clientGetTripsInfoTextView);
+        clientGetTripsInfoTextView.setOnClickListener(v -> mainPresenter.clientClickToCreateOrderButton());
 
-        cancelOrderTextView = (TextView) view.findViewById(R.id.cancelOrderTextView);
-        cancelOrderTextView.setOnClickListener(v -> mainPresenter.clientClickToCancelOrderButton(orderTaxiTextView.getText()));
+        clientUserWantsToOrderTaxiAgree = (TextView) view.findViewById(R.id.clientUserWantsToOrderTaxiAgree);
+        clientUserWantsToOrderTaxiAgree.setOnClickListener(v -> mainPresenter.clientClickToCreateOrderButton());
 
-        statusDriverOrdersTextView = (TextView) view.findViewById(R.id.newOrderTextView);
-        statusDriverOrdersTextView.setOnClickListener(v -> mainPresenter.driverMessageSync());
+        clientWantsCancelOrderTextView = (TextView) view.findViewById(R.id.clientWantsCancelOrderTextView);
+        clientWantsCancelOrderTextView.setOnClickListener(v -> mainPresenter.clientClickToCancelOrderButton(clientUserWantsToOrderTaxiAgree.getText()));
 
-        statusClientOrdersTextView = (TextView) view.findViewById(R.id.statusOrdersTextView);
-        statusClientOrdersTextView.setOnClickListener(v -> mainPresenter.clientMessageSync());
+        clientStatusOrdersTextView = (TextView) view.findViewById(R.id.clientStatusOrdersTextView);
+        clientStatusOrdersTextView.setOnClickListener(v -> mainPresenter.clientMessageSync());
+
+        clientRateDriverAfterTripTextView = (TextView) view.findViewById(R.id.clientRateDriverAfterTripTextView);
+        clientRateDriverAfterTripTextView.setOnClickListener(v -> mainPresenter.clientMessageSync());
+
+
+        driverMessageSyncTextView = (TextView) view.findViewById(R.id.driverMessageSyncTextView);
+        driverMessageSyncTextView.setOnClickListener(v -> mainPresenter.driverMessageSync());
 
 
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
@@ -92,8 +101,14 @@ public class MainFragment extends Fragment implements MainView {
     }
 
     @Override
+    public void showClientTripsInfo(String id) {
+        Toast.makeText(getContext(), "trip info: " + id, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
     public void showIdNewOrder(int id) {
-        getActivity().runOnUiThread(() -> orderTaxiTextView.setText(String.valueOf(id)));
+        getActivity().runOnUiThread(() -> clientUserWantsToOrderTaxiAgree.setText(String.valueOf(id)));
         Toast.makeText(getContext(), "new order id: " + id, Toast.LENGTH_SHORT).show();
         mainPresenter.driverMessageSync();
     }
@@ -105,13 +120,13 @@ public class MainFragment extends Fragment implements MainView {
 
     @Override
     public void showStatusOfClientOrders(String order) {
-        getActivity().runOnUiThread(() -> statusClientOrdersTextView.setText(String.valueOf(order)));
+        getActivity().runOnUiThread(() -> clientStatusOrdersTextView.setText(String.valueOf(order)));
 
     }
 
     @Override
     public void showStatusOfDriverOrders(String order) {
-        getActivity().runOnUiThread(() -> statusDriverOrdersTextView.setText(String.valueOf(order)));
+        getActivity().runOnUiThread(() -> driverMessageSyncTextView.setText(String.valueOf(order)));
 
     }
 }

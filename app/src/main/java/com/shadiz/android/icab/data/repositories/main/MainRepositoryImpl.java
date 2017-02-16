@@ -1,11 +1,12 @@
 package com.shadiz.android.icab.data.repositories.main;
 
 
-
 import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
@@ -38,6 +39,11 @@ public class MainRepositoryImpl implements MainRepository {
                 .flatMap(aLong -> Observable.fromCallable(() ->
                         new DriverModel("aba", new CarModel("mers", "a123bn"), "4"))
                 );
+    }
+
+    @Override
+    public Observable<TripInfoResponse> getClientTripsInfo(ClientTripsInfoRequest request) {
+        return RxRetrofitUtils.wrapRetrofitCall(clientService.getClientTripsInfo(request));
     }
 
     @Override

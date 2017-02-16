@@ -8,8 +8,10 @@ import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.data.repositories.main.MainRepository;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
 import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
@@ -25,6 +27,8 @@ import com.shadiz.android.icab.data.repositories.network.main.DriverModel;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.utils.rx.RxRetrofitUtils;
 import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 
@@ -64,6 +68,18 @@ public class MainInteractorImpl implements MainInteractor {
                 });
     }
 
+    @Override
+    public Observable<String> getClientTripsInfo() {
+        DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
+        ArrayList<String> filter = new ArrayList<>();
+        filter.add("activeTrip");
+        filter.add("postponedTrips");
+        ClientTripsInfoRequest clientTripsInfoRequest = new ClientTripsInfoRequest(deviceModelRequest, filter);
+
+        return mainRepository.getClientTripsInfo(clientTripsInfoRequest)
+                .map(this::getClientTripInfo);
+    }
+
 
     @Override
     public Observable<Integer> getTripId() {
@@ -95,7 +111,7 @@ public class MainInteractorImpl implements MainInteractor {
 
         return mainRepository.getIdNewOrder(createTripModel)
                 .onErrorResumeNext(throwable -> Observable.error(
-                        new MainInteractorException("Error") ))
+                        new MainInteractorException("Error")))
                 .map(this::getIdOrder);
 //
     }
@@ -115,7 +131,8 @@ public class MainInteractorImpl implements MainInteractor {
         DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
         SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-15 23:24:52");
 
-        return mainRepository.getStatusOfClientOrders(syncModel);    }
+        return mainRepository.getStatusOfClientOrders(syncModel);
+    }
 
     @Override
     public Observable<SyncMessageModelResponse> getStatusOfDriversOrders() {
@@ -137,9 +154,14 @@ public class MainInteractorImpl implements MainInteractor {
         );
     }
 
+    private String getClientTripInfo(TripInfoResponse tripInfoResponse) {
+        return tripInfoResponse.getResult().getActiveTrip().get(0).toString();
+    }
+
     private Integer getIdOrder(NewOrderCreatorModelResponse orderModelRequest) {
         return orderModelRequest.getResult().getTripId();
     }
+
     private Integer getIdCanceledOrder(CanceledOrderModelResponse canceledOrderModelResponse) {
         return canceledOrderModelResponse.getResult().getNewId();
     }

@@ -11,6 +11,8 @@ public interface MainView {
     void showError(String msg);
 
     void showDrivers(String driversInfo); // show drivers in log
+
+    void showClientTripsInfo(String id);
     void showIdNewOrder(int id);
     void showIdCanceledOrder(int id);
     void showStatusOfClientOrders(String order);

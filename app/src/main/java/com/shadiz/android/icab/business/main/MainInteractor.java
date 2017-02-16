@@ -1,5 +1,6 @@
 package com.shadiz.android.icab.business.main;
 
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
@@ -19,6 +20,9 @@ public interface MainInteractor {
      * onSuccess in other cases
      */
     void getStatusMessages(SyncMessageModelRequest syncModel);
+
+
+    Observable<String> getClientTripsInfo();
 
     /**
      * Create new order

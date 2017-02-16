@@ -4,7 +4,6 @@ import com.shadiz.android.icab.dagger.main.MainComponent;
 import com.shadiz.android.icab.dagger.main.MainModule;
 import com.shadiz.android.icab.dagger.network.TaxiModule;
 import com.shadiz.android.icab.data.repositories.network.client.ClientService;
-import com.shadiz.android.icab.data.repositories.network.driver.DriverApi;
 import com.shadiz.android.icab.data.repositories.network.driver.DriverService;
 
 import javax.inject.Singleton;

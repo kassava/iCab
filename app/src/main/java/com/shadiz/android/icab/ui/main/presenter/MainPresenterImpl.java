@@ -38,6 +38,16 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
+    public void clientGetTripsInfo() {
+        mainView.showProgress();
+        Subscription getNewIdOrderSubscription = mainInteractor.getClientTripsInfo()
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleGetClientTripsInfo, this::handleError);
+
+        compositeSubscription.add(getNewIdOrderSubscription);
+    }
+
+    @Override
     public void clientClickToCreateOrderButton() {
         mainView.showProgress();
         Subscription createNewIdOrderSubscription = mainInteractor.getTripId()
@@ -77,7 +87,10 @@ public class MainPresenterImpl implements MainPresenter {
     private void setFreeDriversToView(@NonNull FullDriverDataModel fullDriverDataModel) {
         mainView.showDrivers(fullDriverDataModel.toString());
     }
-
+    private void handleGetClientTripsInfo(@NonNull String trips) {
+        mainView.hideProgress();
+        mainView.showClientTripsInfo(trips);
+    }
     private void handleCreateOrder(@NonNull int id) {
         mainView.hideProgress();
         mainView.showIdNewOrder(id);

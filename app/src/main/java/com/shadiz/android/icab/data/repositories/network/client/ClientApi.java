@@ -2,10 +2,9 @@ package com.shadiz.android.icab.data.repositories.network.client;
 
 
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -90,18 +89,15 @@ public interface ClientApi {
     Call<CanceledOrderModelResponse> getIdCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
     /**
-     *
      * @param device_uuid
      * @param login
      * @param android
      * @param messageModel: newId    - id поездки; duration -  длительность поездки в секундах; mileage  - длинна поездки в метрах; cost     -  стоимость поездки; currency - валюта стоимости поездки
-     *
-     *
      * @return
      */
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<TripRaterResponse> setRateDriverAfterTrip(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<NewOrderCreatorModelResponse> setRateDriverAfterTrip(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
 
     @FormUrlEncoded

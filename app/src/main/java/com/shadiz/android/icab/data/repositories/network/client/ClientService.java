@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order.TripRaterRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.TripRaterResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
@@ -43,7 +43,7 @@ public class ClientService {
      */
     public Call<NewOrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
         GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         Log.d("ClientService", gson.toJson(tripModelRequest.getMessage()));
         return clientApi.getTripId(tripModelRequest.getDevice_uuid(), tripModelRequest.getLogin(), tripModelRequest.getDevice_platform(),gson.toJson(tripModelRequest.getMessage()));
     }
@@ -54,8 +54,8 @@ public class ClientService {
      * @param cancelOrderModelRequest
      * @return
      */
-    public Call<OrderCancelerModelResponse> setCanceleCurrentOrder(CancelOrderRequest cancelOrderModelRequest) {
-        return clientApi.setCanceledOrder(cancelOrderModelRequest.getDevice_uuid(), cancelOrderModelRequest.getLogin(), cancelOrderModelRequest.getDevice_platform(), new Gson().toJson(cancelOrderModelRequest.getMessage()));
+    public Call<CanceledOrderModelResponse> getIdCanceledOrder(CancelOrderRequest cancelOrderModelRequest) {
+        return clientApi.getIdCanceledOrder(cancelOrderModelRequest.getDevice_uuid(), cancelOrderModelRequest.getLogin(), cancelOrderModelRequest.getDevice_platform(), new Gson().toJson(cancelOrderModelRequest.getMessage()));
     }
 
     /**
@@ -64,8 +64,8 @@ public class ClientService {
      * @param messageSyncModelRequest
      * @return
      */
-    public Call<SyncMessageModelResponse> getStatusMessage(SyncMessageModelRequest messageSyncModelRequest) {
-        return clientApi.getStatusMessage(messageSyncModelRequest.getDate_from(), messageSyncModelRequest.getDevice_uuid(), messageSyncModelRequest.getLogin(), messageSyncModelRequest.getDevice_platform());
+    public Call<SyncMessageModelResponse> getStatusClientOrders(SyncMessageModelRequest messageSyncModelRequest) {
+        return clientApi.getStatusOrders(messageSyncModelRequest.getDate_from(), messageSyncModelRequest.getDevice_uuid(), messageSyncModelRequest.getLogin(), messageSyncModelRequest.getDevice_platform());
     }
 
     /**

@@ -2,16 +2,8 @@ package com.shadiz.android.icab.ui.main.presenter;
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.business.main.MainInteractor;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.LocationModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.model.CodesModel;
-import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.MessageOfOrderModel;
-import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.RequirementToTheDriverModel;
+import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 import com.shadiz.android.icab.ui.main.views.MainView;
 import com.shadiz.android.icab.utils.rx.RxSchedulersAbs;
@@ -46,56 +38,67 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void clickToOrderButton() {
+    public void clientClickToCreateOrderButton() {
         mainView.showProgress();
+        Subscription createNewIdOrderSubscription = mainInteractor.getTripId()
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleCreateOrder, this::handleError);
 
+        compositeSubscription.add(createNewIdOrderSubscription);
+    }
 
+    @Override
+    public void clientClickToCancelOrderButton(CharSequence id) {
+        mainView.showProgress();
+        Subscription getIdCanceledOrderSubscription = mainInteractor.getIdCanceledOrder(id)
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleCancelOrder, this::handleError);
+        compositeSubscription.add(getIdCanceledOrderSubscription);
+    }
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+    @Override
+    public void clientMessageSync() {
+        mainView.showProgress();
+        Subscription getIdCanceledOrderSubscription = mainInteractor.getStatusOfClientOrders()
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleStatusClientOrders, this::handleError);
+        compositeSubscription.add(getIdCanceledOrderSubscription);
+    }
 
-        LocationModelRequest location = new LocationModelRequest(-122.084, 37.422, 12, "Luna");
-        RequirementToTheDriverModel requirementToTheDriverModel = new RequirementToTheDriverModel("7000", 0, 5, 0);
-        CodesModel codesModel = new CodesModel("", location, "", location, 1, "", 0, 1, 0, requirementToTheDriverModel);
-        DeviceModelRequest deviceModelRequest = new DeviceModelRequest("3af83a99f6f8ad7", "3333333333", "android");
-        MessageOfOrderModel messageModel = new MessageOfOrderModel();
-        messageModel.setCode2(gson.toJson(location));
-        messageModel.setCode4(gson.toJson(location));
-        messageModel.setCode5("1");
-        messageModel.setCode7("0");
-        messageModel.setCode8("1");
-        messageModel.setCode9("0");
-        messageModel.setCode10(gson.toJson(requirementToTheDriverModel));
-        messageModel.setAppear_type("0");
-        messageModel.setUser_from("813");
-        messageModel.setType("clientServer_userWantsToOrderTaxi_agree");
-
-
-        OrderModelRequest createTripModel = new OrderModelRequest(messageModel, "3af83a99f6f8ad7", "3333333333", "android");
-        SyncMessageModelRequest syncModel = new SyncMessageModelRequest(deviceModelRequest, "2017-02-03 04:54:57");
-
-//        Subscription loadFreeDriversSubscription = mainInteractor.getTripId(createTripModel)
-//                .compose(rxSchedulersAbs.getIOToMainTransformer())
-//                .subscribe(this::handleCreateOrder, this::handleErrorLoadPersonalInfo);
-
-//        compositeSubscription.add(loadFreeDriversSubscription);
-        mainInteractor.getTripID(createTripModel);
-//        mainInteractor.getStatusMessages(syncModel);
+    @Override
+    public void driverMessageSync() {
+        mainView.showProgress();
+        Subscription getNewOrdersSubscription = mainInteractor.getStatusOfDriversOrders()
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleStatusDriverOrders, this::handleError);
+        compositeSubscription.add(getNewOrdersSubscription);
     }
 
     private void setFreeDriversToView(@NonNull FullDriverDataModel fullDriverDataModel) {
         mainView.showDrivers(fullDriverDataModel.toString());
     }
 
-    private void handleCreateOrder(@NonNull int Id) {
-        // view actions
-//        setFreeDriversToView(fullDriverDataModel);
-        // hide progress
+    private void handleCreateOrder(@NonNull int id) {
         mainView.hideProgress();
+        mainView.showIdNewOrder(id);
     }
 
-    private void handleErrorLoadPersonalInfo(Throwable throwable) {
+    private void handleCancelOrder(@NonNull int id) {
         mainView.hideProgress();
-        mainView.showError();
+        mainView.showIdCanceledOrder(id);
+    }
+
+    private void handleStatusDriverOrders(@NonNull SyncMessageModelResponse response) {
+        mainView.hideProgress();
+        mainView.showStatusOfClientOrders(String.valueOf(response.getResult().getMessages().get(0).getCode1()));
+    }
+
+    private void handleStatusClientOrders(@NonNull SyncMessageModelResponse response) {
+        mainView.hideProgress();
+        mainView.showStatusOfClientOrders(String.valueOf(response.getResult().getMessages().get(0).getCode1()));
+    }
+    private void handleError(Throwable throwable) {
+        mainView.hideProgress();
+        mainView.showError(throwable.getLocalizedMessage());
     }
 }

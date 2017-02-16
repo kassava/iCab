@@ -8,7 +8,12 @@ public interface MainView {
 
     void showProgress();
     void hideProgress();
-    void showError();
+    void showError(String msg);
 
     void showDrivers(String driversInfo); // show drivers in log
+    void showIdNewOrder(int id);
+    void showIdCanceledOrder(int id);
+    void showStatusOfClientOrders(String order);
+
+    void showStatusOfDriverOrders(String order);
 }

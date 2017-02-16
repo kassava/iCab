@@ -3,7 +3,7 @@ package com.shadiz.android.icab.data.repositories.network.driver;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
@@ -57,7 +57,7 @@ public class DriverService {
      * @param cancelOrderModelRequest
      * @return
      */
-    public Call<OrderCancelerModelResponse> setCanceleCurrentOrder(CancelOrderRequest cancelOrderModelRequest) {
+    public Call<CanceledOrderModelResponse> setCancelCurrentOrder(CancelOrderRequest cancelOrderModelRequest) {
         return driverApi.setCanceledOrder(cancelOrderModelRequest.getDevice_uuid(), cancelOrderModelRequest.getLogin(), cancelOrderModelRequest.getDevice_platform(), new Gson().toJson(cancelOrderModelRequest.getMessage()));
     }
 
@@ -89,8 +89,8 @@ public class DriverService {
      * @param syncMessageModelRequest
      * @return
      */
-    public Call<SyncMessageModelResponse> setStatusOrder(SyncMessageModelRequest syncMessageModelRequest) {
-        return driverApi.setStatusOrder(syncMessageModelRequest.getDate_from(), syncMessageModelRequest.getDevice_uuid(), syncMessageModelRequest.getLogin(), syncMessageModelRequest.getDevice_platform());
+    public Call<SyncMessageModelResponse> getListNewOrders(SyncMessageModelRequest syncMessageModelRequest) {
+        return driverApi.getListDriverOrders(syncMessageModelRequest.getDate_from(), syncMessageModelRequest.getDevice_uuid(), syncMessageModelRequest.getLogin(), syncMessageModelRequest.getDevice_platform());
     }
 
 

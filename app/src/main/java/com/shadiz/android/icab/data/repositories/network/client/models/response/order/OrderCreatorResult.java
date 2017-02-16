@@ -11,7 +11,7 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResult;
 public class OrderCreatorResult {
     @SerializedName("trip_id")
     @Expose
-    private String tripId;
+    private Integer tripId;
     @SerializedName("session_id")
     @Expose
     private String sessionId;
@@ -19,11 +19,11 @@ public class OrderCreatorResult {
     @Expose
     private String login;
 
-    public String getTripId() {
+    public Integer getTripId() {
         return tripId;
     }
 
-    public void setTripId(String tripId) {
+    public void setTripId(Integer tripId) {
         this.tripId = tripId;
     }
 

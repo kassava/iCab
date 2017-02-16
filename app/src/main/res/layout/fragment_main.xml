@@ -27,8 +27,42 @@
                 android:textSize="@dimen/text_button_size"
                 android:textColor="@color/colorAccent"
                 android:text="@string/order_taxt"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:text="список новых заказов"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/order"
+                android:id="@+id/newOrderTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:text="Cancel Order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
+                android:id="@+id/cancelOrderTextView"
+                android:textSize="@dimen/text_button_size"
+                android:textColor="@color/colorAccent"
+                android:layout_below="@+id/newOrderTextView"
+                android:layout_alignLeft="@+id/order"
+                android:layout_alignStart="@+id/order" />
+
+            <TextView
+                android:text="Состояние заказов"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:id="@+id/statusOrdersTextView"
+                android:layout_below="@+id/cancelOrderTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
         </RelativeLayout>
 

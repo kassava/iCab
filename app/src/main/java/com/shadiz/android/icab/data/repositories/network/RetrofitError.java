@@ -11,8 +11,8 @@ import okhttp3.ResponseBody;
  * Created on 11.01.17.
  */
 
-public class TaxiError extends Throwable {
-    public TaxiError(ResponseBody responseBody) {
+public class RetrofitError extends Throwable {
+    public RetrofitError(ResponseBody responseBody) {
         super(getMessage(responseBody));
     }
 

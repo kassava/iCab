@@ -1,7 +1,7 @@
 package com.shadiz.android.icab.data.repositories.network.client;
 
 
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.order.NewOrderCreatorModelResponse;
 import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
@@ -76,7 +76,7 @@ public interface ClientApi {
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("/api/messageSync.php")
-    Call<SyncMessageModelResponse> getStatusMessage(@Field("date_from") String date, @Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android);
+    Call<SyncMessageModelResponse> getStatusOrders(@Field("date_from") String date, @Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android);
 
     /**
      * @param device_uuid
@@ -87,7 +87,7 @@ public interface ClientApi {
      */
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<OrderCancelerModelResponse> setCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<CanceledOrderModelResponse> getIdCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
     /**
      *

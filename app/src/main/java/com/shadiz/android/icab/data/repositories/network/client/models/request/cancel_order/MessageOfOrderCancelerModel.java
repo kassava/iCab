@@ -11,7 +11,7 @@ public class MessageOfOrderCancelerModel extends BaseModelRequest {
     private String type, code2;
     private int code1, code3, code4;
 
-    public MessageOfOrderCancelerModel(DeviceModelRequest deviceModelRequest, String type, String code2, int code1, int code3, int code4) {
+    public MessageOfOrderCancelerModel(DeviceModelRequest deviceModelRequest, String type,  int code1, String code2, int code3, int code4) {
         super(deviceModelRequest.getDevice_uuid(),
                 deviceModelRequest.getLogin(),
                 deviceModelRequest.getDevice_platform()

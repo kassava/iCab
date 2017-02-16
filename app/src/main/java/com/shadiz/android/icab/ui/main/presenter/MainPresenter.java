@@ -11,5 +11,9 @@ public interface MainPresenter {
     void bindView(MainView mainView);
     void unbindView();
 
-    void clickToOrderButton();
+    void clientClickToCreateOrderButton();
+    void clientClickToCancelOrderButton(CharSequence id);
+    void clientMessageSync();
+
+    void driverMessageSync();
 }

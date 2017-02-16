@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shadiz.android.icab.ICabApp;
 import com.shadiz.android.icab.R;
@@ -28,7 +29,7 @@ public class MainFragment extends Fragment implements MainView {
     @Inject
     MainPresenter mainPresenter;
 
-    private TextView orderTaxiTextView;
+    private TextView orderTaxiTextView, cancelOrderTextView, statusDriverOrdersTextView, statusClientOrdersTextView;
     private ProgressBar progressBar;
     private CoordinatorLayout coordinatorLayout;
 
@@ -45,7 +46,18 @@ public class MainFragment extends Fragment implements MainView {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         orderTaxiTextView = (TextView) view.findViewById(R.id.order);
-        orderTaxiTextView.setOnClickListener(v -> mainPresenter.clickToOrderButton());
+        orderTaxiTextView.setOnClickListener(v -> mainPresenter.clientClickToCreateOrderButton());
+
+        cancelOrderTextView = (TextView) view.findViewById(R.id.cancelOrderTextView);
+        cancelOrderTextView.setOnClickListener(v -> mainPresenter.clientClickToCancelOrderButton(orderTaxiTextView.getText()));
+
+        statusDriverOrdersTextView = (TextView) view.findViewById(R.id.newOrderTextView);
+        statusDriverOrdersTextView.setOnClickListener(v -> mainPresenter.driverMessageSync());
+
+        statusClientOrdersTextView = (TextView) view.findViewById(R.id.statusOrdersTextView);
+        statusClientOrdersTextView.setOnClickListener(v -> mainPresenter.clientMessageSync());
+
+
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         coordinatorLayout = (CoordinatorLayout) view.findViewById(R.id.main_layout);
         mainPresenter.bindView(this);
@@ -69,13 +81,37 @@ public class MainFragment extends Fragment implements MainView {
     }
 
     @Override
-    public void showError() {
-        Snackbar snackbar = Snackbar.make(coordinatorLayout, getString(R.string.common_error), Snackbar.LENGTH_LONG);
+    public void showError(String msg) {
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
     @Override
     public void showDrivers(String driversInfo) {
         Log.d("Fragment", driversInfo);
+    }
+
+    @Override
+    public void showIdNewOrder(int id) {
+        getActivity().runOnUiThread(() -> orderTaxiTextView.setText(String.valueOf(id)));
+        Toast.makeText(getContext(), "new order id: " + id, Toast.LENGTH_SHORT).show();
+        mainPresenter.driverMessageSync();
+    }
+
+    @Override
+    public void showIdCanceledOrder(int id) {
+        Toast.makeText(getContext(), "Canceled Order: " + id, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showStatusOfClientOrders(String order) {
+        getActivity().runOnUiThread(() -> statusClientOrdersTextView.setText(String.valueOf(order)));
+
+    }
+
+    @Override
+    public void showStatusOfDriverOrders(String order) {
+        getActivity().runOnUiThread(() -> statusDriverOrdersTextView.setText(String.valueOf(order)));
+
     }
 }

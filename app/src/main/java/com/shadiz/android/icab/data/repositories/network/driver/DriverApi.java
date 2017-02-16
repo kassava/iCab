@@ -1,6 +1,6 @@
 package com.shadiz.android.icab.data.repositories.network.driver;
 
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.OrderCancelerModelResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm.OrderConfirmationModelResponse;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.trip_info.DriverTripResponse;
@@ -36,7 +36,7 @@ public interface DriverApi {
      */
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<OrderCancelerModelResponse> setCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<CanceledOrderModelResponse> setCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
     /**
      * @param device_uuid
@@ -72,5 +72,5 @@ public interface DriverApi {
      */
     @FormUrlEncoded
     @POST("/api/messageSync.php")
-    Call<SyncMessageModelResponse> setStatusOrder(@Field("date_from") String date, @Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android);
+    Call<SyncMessageModelResponse> getListDriverOrders(@Field("date_from") String date, @Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android);
 }

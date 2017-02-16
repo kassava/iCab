@@ -3,14 +3,14 @@ package com.shadiz.android.icab.data.repositories.network.common.request.order;
 import com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order.OrderMessageModel;
 
 /**
- * Created by oldman on 09.02.17.
+ * Created on 09.02.17.
  */
 
 public class CancelOrderMessageModel extends OrderMessageModel {
     private String code2;
 
     /**
-     * @param type        - driverServer_userWantsToOrderTaxi_agree/driverServer_userWantsToOrderTaxi_disagree
+     * @param type        - driverServer_userWantsToOrderTaxi_agree/driverServer_userWantsToOrderTaxi_disagree/clientServer_userWantsToCancelOrder_agree
      * @param code1
      * @param appear_type
      * @param user_to

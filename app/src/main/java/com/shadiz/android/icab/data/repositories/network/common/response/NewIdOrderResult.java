@@ -11,13 +11,13 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResult;
 public class NewIdOrderResult extends BaseResult {
     @SerializedName("newId")
     @Expose
-    private String newId;
+    private Integer newId;
 
-    public String getNewId() {
+    public Integer getNewId() {
         return newId;
     }
 
-    public void setNewId(String newId) {
+    public void setNewId(Integer newId) {
         this.newId = newId;
     }
 }

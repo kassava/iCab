@@ -8,20 +8,12 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class LocationModelRequest {
-    @SerializedName("geocode")
-    @Expose
     String geocode;
-    @SerializedName("latitude")
-    @Expose
-    double latitude;
-    @SerializedName("longitude")
-    @Expose
-    double longitude;
-    @SerializedName("precision")
-    @Expose
-    int precision;
+    String latitude;
+    String longitude;
+    String precision;
 
-    public LocationModelRequest(double latitude, double longitude, int precision, String geocode) {
+    public LocationModelRequest(String latitude, String longitude, String precision, String geocode) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.precision = precision;
@@ -36,29 +28,27 @@ public class LocationModelRequest {
         this.geocode = geocode;
     }
 
-    public int getPrecision() {
-        return precision;
-    }
-
-    public void setPrecision(int precision) {
-        this.precision = precision;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
+    public String getLongitude() {
+        return longitude;
+    }
 
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(String precision) {
+        this.precision = precision;
+    }
 }

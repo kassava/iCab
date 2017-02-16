@@ -55,7 +55,7 @@ public class MainPresenterTest {
         // presenter bindView
         mainPresenterImpl.bindView(mainView);
         // action loadPersonalInfo
-        mainPresenterImpl.clickToOrderButton();
+        mainPresenterImpl.clientClickToCreateOrderButton();
         // verify interactor was called
         verify(mainInteractor).getFreeDrivers();
         // verify calls of view methods
@@ -75,7 +75,7 @@ public class MainPresenterTest {
         // presenter bindView
         mainPresenterImpl.bindView(mainView);
         // action loadPersonalInfo
-        mainPresenterImpl.clickToOrderButton();
+        mainPresenterImpl.clientClickToCreateOrderButton();
         // verify interactor was called
         verify(mainInteractor).getFreeDrivers();
         // verify calls of view methods (progress and showError)

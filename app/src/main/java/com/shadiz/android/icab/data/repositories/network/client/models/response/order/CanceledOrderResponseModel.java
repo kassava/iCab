@@ -9,7 +9,7 @@ import com.shadiz.android.icab.data.repositories.network.common.response.NewIdOr
  * Created by OldMan on 05.02.2017.
  */
 
-public class CanceledOrderModelResponse extends BaseResponse {
+public class CanceledOrderResponseModel extends BaseResponse {
     @SerializedName("result")
     @Expose
     private NewIdOrderResult result;

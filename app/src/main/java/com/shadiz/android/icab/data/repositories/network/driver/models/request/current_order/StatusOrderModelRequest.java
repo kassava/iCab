@@ -1,13 +1,13 @@
 package com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order;
 
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.DeviceRequestModel;
 
 /**
  * Created on 05.02.2017.
  */
 
-public class ConfirmOrderModelRequest extends BaseModelRequest {
+public class StatusOrderModelRequest extends BaseModelRequest {
     private OrderMessageModel message;
 
     public OrderMessageModel getMessage() {
@@ -18,7 +18,7 @@ public class ConfirmOrderModelRequest extends BaseModelRequest {
         this.message = message;
     }
 
-    public ConfirmOrderModelRequest(DeviceModelRequest modelRequest, OrderMessageModel message) {
+    public StatusOrderModelRequest(DeviceRequestModel modelRequest, OrderMessageModel message) {
         super(modelRequest);
         this.message = message;
     }

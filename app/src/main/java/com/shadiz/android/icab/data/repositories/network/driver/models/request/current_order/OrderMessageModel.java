@@ -6,6 +6,16 @@ package com.shadiz.android.icab.data.repositories.network.driver.models.request.
 
 public class OrderMessageModel {
     private String type;
+
+    public String getCode2() {
+        return code2;
+    }
+
+    public void setCode2(String code2) {
+        this.code2 = code2;
+    }
+
+    private String code2;
     private int code1, appear_type, user_to;
 
     /**
@@ -15,11 +25,14 @@ public class OrderMessageModel {
      * @param appear_type
      * @param user_to
      */
-    public OrderMessageModel(String type, int code1, int appear_type, int user_to) {
+    public OrderMessageModel(String type, int code1, String code2, int appear_type, int user_to) {
         this.type = type;
         this.user_to = user_to;
         this.appear_type = appear_type;
         this.code1 = code1;
+    }
+
+    public OrderMessageModel() {
     }
 
     public int getAppear_type() {

@@ -1,7 +1,7 @@
 package com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order;
 
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.DeviceRequestModel;
 
 /**
  * Created on 05.02.2017.
@@ -18,7 +18,7 @@ public class TripRaterRequest extends BaseModelRequest {
         this.message = message;
     }
 
-    public TripRaterRequest(DeviceModelRequest modelRequest, MessageOfTripRaterModel message) {
+    public TripRaterRequest(DeviceRequestModel modelRequest, MessageOfTripRaterModel message) {
         super(modelRequest);
         this.message = message;
 

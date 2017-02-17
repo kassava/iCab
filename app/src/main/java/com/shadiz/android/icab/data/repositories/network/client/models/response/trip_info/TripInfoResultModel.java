@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by oldman on 06.02.17.
  */
 
-public class TripInfoResult extends BaseResult {
+public class TripInfoResultModel extends BaseResult {
     @SerializedName("activeTrip")
     @Expose
     ArrayList<ActiveTripModel> activeTrip;

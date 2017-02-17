@@ -1,7 +1,7 @@
 package com.shadiz.android.icab.data.repositories.network.driver.models.request.trip_info;
 
 import com.shadiz.android.icab.data.repositories.network.common.request.BaseModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.DeviceModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.DeviceRequestModel;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class DriverTripInfoRequest extends BaseModelRequest {
     private Integer tripClientInRadiusMeters;
     private Integer tripMaxDistanceMeters;
 
-    public DriverTripInfoRequest(DeviceModelRequest modelRequest, ArrayList<String> tripFilter, Integer tripClientInRadiusMeters, Integer tripMaxDistanceMeters) {
+    public DriverTripInfoRequest(DeviceRequestModel modelRequest, ArrayList<String> tripFilter, Integer tripClientInRadiusMeters, Integer tripMaxDistanceMeters) {
         super(modelRequest);
         this.tripFilter = tripFilter;
         this.tripClientInRadiusMeters = tripClientInRadiusMeters;

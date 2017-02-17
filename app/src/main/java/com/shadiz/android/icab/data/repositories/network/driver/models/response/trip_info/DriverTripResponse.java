@@ -2,7 +2,7 @@ package com.shadiz.android.icab.data.repositories.network.driver.models.response
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResult;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResultModel;
 import com.shadiz.android.icab.data.repositories.network.common.BaseResponse;
 
 /**
@@ -12,13 +12,13 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResponse;
 public class DriverTripResponse extends BaseResponse {
     @SerializedName("result")
     @Expose
-    private TripInfoResult result;
+    private TripInfoResultModel result;
 
-    public TripInfoResult getResult() {
+    public TripInfoResultModel getResult() {
         return result;
     }
 
-    public void setResult(TripInfoResult result) {
+    public void setResult(TripInfoResultModel result) {
         this.result = result;
     }
 }

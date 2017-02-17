@@ -18,6 +18,7 @@
         app:layout_anchorGravity="center_vertical|center_horizontal"/>
 
     <TableLayout
+        android:id="@+id/tableRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -83,7 +84,7 @@
             android:layout_marginTop="15dp">
 
             <TextView
-                android:id="@+id/orderAgreeFromDriverTextView"
+                android:id="@+id/driverAgreeToOrderrTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -101,7 +102,7 @@
             >
 
             <TextView
-                android:id="@+id/orderDisagreeFromDriverTextView"
+                android:id="@+id/driverDisagreeToOrderTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -241,6 +242,41 @@
 
 
     </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tableRequest"
+         android:layout_gravity="bottom">
+
+        <TextView
+            android:text="Ordrer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activeClientOrderTextView"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <TextView
+            android:text="DriverOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/activeDriverOrderTextView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="clientStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/activeClientOrderTextView"
+            android:layout_toEndOf="@+id/activeClientOrderTextView"
+            android:layout_marginLeft="63dp"
+            android:layout_marginStart="63dp"
+            android:id="@+id/clientStatusTextView" />
+    </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

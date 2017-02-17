@@ -17,4 +17,8 @@ public interface MainPresenter {
     void clientMessageSync();
 
     void driverMessageSync();
+    void driverGetTripsInfo();
+    void driverAgreeToOrder(CharSequence id);
+    void driverDisagreeToOrder(CharSequence id);
+    void driverCancelOrder(CharSequence id);
 }

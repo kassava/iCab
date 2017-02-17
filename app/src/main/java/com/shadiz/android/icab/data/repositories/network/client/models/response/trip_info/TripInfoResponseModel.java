@@ -8,16 +8,16 @@ import com.shadiz.android.icab.data.repositories.network.common.BaseResponse;
  * Created by oldman on 06.02.17.
  */
 
-public class TripInfoResponse extends BaseResponse {
+public class TripInfoResponseModel extends BaseResponse {
     @SerializedName("result")
     @Expose
-    private TripInfoResult result;
+    private TripInfoResultModel result;
 
-    public TripInfoResult getResult() {
+    public TripInfoResultModel getResult() {
         return result;
     }
 
-    public void setResult(TripInfoResult result) {
+    public void setResult(TripInfoResultModel result) {
         this.result = result;
     }
 }

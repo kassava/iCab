@@ -9,7 +9,7 @@ import com.shadiz.android.icab.data.repositories.network.common.response.NewIdOr
  * Created on 05.02.2017.
  */
 
-public class OrderConfirmationModelResponse extends BaseResponse {
+public class StatusOrderResponseModel extends BaseResponse {
     @SerializedName("result")
     @Expose
     private NewIdOrderResult result;

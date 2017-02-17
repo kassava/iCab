@@ -1,10 +1,12 @@
 package com.shadiz.android.icab.data.repositories.network.client;
 
 
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderResponseModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.ClientNewOrderCreatorResponseModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponseModel;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -41,7 +43,7 @@ public interface ClientApi {
     @Headers({"Accept: application/json"})
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<NewOrderCreatorModelResponse> getTripId(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<ClientNewOrderCreatorResponseModel> getTripId(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
 
     /**
@@ -86,7 +88,7 @@ public interface ClientApi {
      */
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<CanceledOrderModelResponse> getIdCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<CanceledOrderResponseModel> getIdCanceledOrder(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
     /**
      * @param device_uuid
@@ -97,11 +99,11 @@ public interface ClientApi {
      */
     @FormUrlEncoded
     @POST("/api/messageCreate.php")
-    Call<NewOrderCreatorModelResponse> setRateDriverAfterTrip(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
+    Call<ClientNewOrderCreatorResponseModel> setRateDriverAfterTrip(@Field("device_uuid") String device_uuid, @Field("login") String login, @Field("device_platform") String android, @Field("message") String messageModel);
 
 
     @FormUrlEncoded
     @POST("/api/clientGetTripsInfo.php")
-    Call<TripInfoResponse> getClientTripsInfo(@Field("device_uuid") String device_uuid, @Field("login") String login,
-                                              @Field("device_platform") String android, @Field("trip_filter") String tripFilter);
+    Call<TripInfoResponseModel> getClientTripsInfo(@Field("device_uuid") String device_uuid, @Field("login") String login,
+                                                   @Field("device_platform") String android, @Field("trip_filter[]") ArrayList<String> tripFilter);
 }

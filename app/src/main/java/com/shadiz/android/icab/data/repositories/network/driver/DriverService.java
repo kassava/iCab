@@ -3,14 +3,12 @@ package com.shadiz.android.icab.data.repositories.network.driver;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
-import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageRequestModel;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
-import com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order.ConfirmOrderModelRequest;
+import com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order.StatusOrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.driver.models.request.trip_info.DriverTripInfoRequest;
-import com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm.OrderConfirmationModelResponse;
+import com.shadiz.android.icab.data.repositories.network.driver.models.response.current_confirm.StatusOrderResponseModel;
 import com.shadiz.android.icab.data.repositories.network.driver.models.response.trip_info.DriverTripResponse;
 
 import javax.inject.Inject;
@@ -37,28 +35,8 @@ public class DriverService {
      * @param confirmOrderModelRequest
      * @return
      */
-    public Call<OrderConfirmationModelResponse> setDriverOrderConfirmation(ConfirmOrderModelRequest confirmOrderModelRequest) {
-        return driverApi.setDriverOrderConfirmation(confirmOrderModelRequest.getDevice_uuid(), confirmOrderModelRequest.getLogin(), confirmOrderModelRequest.getDevice_platform(), new Gson().toJson(confirmOrderModelRequest.getMessage()));
-    }
-
-    /**
-     * driverServer_userWantsToOrderTaxi_disagree
-     *
-     * @param disagreeConfirmOrderModelRequest
-     * @return
-     */
-    public Call<OrderConfirmationModelResponse> setDriverOrderDisagreeConfirmation(ConfirmOrderModelRequest disagreeConfirmOrderModelRequest) {
-        return driverApi.setDriverOrderConfirmation(disagreeConfirmOrderModelRequest.getDevice_uuid(), disagreeConfirmOrderModelRequest.getLogin(), disagreeConfirmOrderModelRequest.getDevice_platform(), new Gson().toJson(disagreeConfirmOrderModelRequest.getMessage()));
-    }
-
-    /**
-     * driverServer_userWantsToCancelOrder_agree
-     *
-     * @param cancelOrderModelRequest
-     * @return
-     */
-    public Call<CanceledOrderModelResponse> setCancelCurrentOrder(CancelOrderRequest cancelOrderModelRequest) {
-        return driverApi.setCanceledOrder(cancelOrderModelRequest.getDevice_uuid(), cancelOrderModelRequest.getLogin(), cancelOrderModelRequest.getDevice_platform(), new Gson().toJson(cancelOrderModelRequest.getMessage()));
+    public Call<StatusOrderResponseModel> getStatusDriverOrder(StatusOrderModelRequest confirmOrderModelRequest) {
+        return driverApi.getStatusDriverOrder(confirmOrderModelRequest.getDevice_uuid(), confirmOrderModelRequest.getLogin(), confirmOrderModelRequest.getDevice_platform(), new Gson().toJson(confirmOrderModelRequest.getMessage()));
     }
 
     /**
@@ -67,9 +45,10 @@ public class DriverService {
      * @param orderModelRequest
      * @return
      */
-    public Call<OrderConfirmationModelResponse> setOffToTheClient(OrderModelRequest orderModelRequest) {
-        return driverApi.setDriverOrderConfirmation(orderModelRequest.getDevice_uuid(), orderModelRequest.getLogin(), orderModelRequest.getDevice_platform(), new Gson().toJson(orderModelRequest.getMessage()));
+    public Call<StatusOrderResponseModel> setOffToTheClient(OrderModelRequest orderModelRequest) {
+        return driverApi.getStatusDriverOrder(orderModelRequest.getDevice_uuid(), orderModelRequest.getLogin(), orderModelRequest.getDevice_platform(), new Gson().toJson(orderModelRequest.getMessage()));
     }
+
     /**
      * driverGetTripsInfo
      *
@@ -78,7 +57,7 @@ public class DriverService {
      */
     public Call<DriverTripResponse> getDriverTripsInfo(DriverTripInfoRequest driverTripInfoRequest) {
         return driverApi.getDriverTripsInfo(driverTripInfoRequest.getDevice_uuid(), driverTripInfoRequest.getLogin(),
-                driverTripInfoRequest.getDevice_platform(), new Gson().toJson(driverTripInfoRequest.getTripFilter()),
+                driverTripInfoRequest.getDevice_platform(), driverTripInfoRequest.getTripFilter(),
                 driverTripInfoRequest.getTripClientInRadiusMeters(), driverTripInfoRequest.getTripMaxDistanceMeters());
 
     }
@@ -89,7 +68,7 @@ public class DriverService {
      * @param syncMessageModelRequest
      * @return
      */
-    public Call<SyncMessageModelResponse> getListNewOrders(SyncMessageModelRequest syncMessageModelRequest) {
+    public Call<SyncMessageModelResponse> getListNewOrders(SyncMessageRequestModel syncMessageModelRequest) {
         return driverApi.getListDriverOrders(syncMessageModelRequest.getDate_from(), syncMessageModelRequest.getDevice_uuid(), syncMessageModelRequest.getLogin(), syncMessageModelRequest.getDevice_platform());
     }
 

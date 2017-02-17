@@ -50,7 +50,7 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void clientClickToCreateOrderButton() {
         mainView.showProgress();
-        Subscription createNewIdOrderSubscription = mainInteractor.getTripId()
+        Subscription createNewIdOrderSubscription = mainInteractor.getClientTripId()
                 .compose(rxSchedulersAbs.getIOToMainTransformer())
                 .subscribe(this::handleCreateOrder, this::handleError);
 
@@ -60,7 +60,7 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void clientClickToCancelOrderButton(CharSequence id) {
         mainView.showProgress();
-        Subscription getIdCanceledOrderSubscription = mainInteractor.getIdCanceledOrder(id)
+        Subscription getIdCanceledOrderSubscription = mainInteractor.getClientIdCanceledOrder(id)
                 .compose(rxSchedulersAbs.getIOToMainTransformer())
                 .subscribe(this::handleCancelOrder, this::handleError);
         compositeSubscription.add(getIdCanceledOrderSubscription);
@@ -69,7 +69,7 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void clientMessageSync() {
         mainView.showProgress();
-        Subscription getIdCanceledOrderSubscription = mainInteractor.getStatusOfClientOrders()
+        Subscription getIdCanceledOrderSubscription = mainInteractor.getClientStatusOfOrders()
                 .compose(rxSchedulersAbs.getIOToMainTransformer())
                 .subscribe(this::handleStatusClientOrders, this::handleError);
         compositeSubscription.add(getIdCanceledOrderSubscription);
@@ -84,13 +84,51 @@ public class MainPresenterImpl implements MainPresenter {
         compositeSubscription.add(getNewOrdersSubscription);
     }
 
+    @Override
+    public void driverGetTripsInfo() {
+        mainView.showProgress();
+        Subscription getNewOrdersSubscription = mainInteractor.getDriverTripsInfo()
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleGetDriverTripsInfo, this::handleError);
+        compositeSubscription.add(getNewOrdersSubscription);
+    }
+
+    @Override
+    public void driverAgreeToOrder(CharSequence id) {
+        mainView.showProgress();
+        Subscription getNewOrdersSubscription = mainInteractor.getDriverAgreeToOrder(id)
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleAgreeDriverToOrder, this::handleError);
+        compositeSubscription.add(getNewOrdersSubscription);
+    }
+
+    @Override
+    public void driverDisagreeToOrder(CharSequence id) {
+        mainView.showProgress();
+        Subscription getNewOrdersSubscription = mainInteractor.getDriverDisagreeToOrder(id)
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleDisagreeDriverToOrder, this::handleError);
+        compositeSubscription.add(getNewOrdersSubscription);
+    }
+
+    @Override
+    public void driverCancelOrder(CharSequence id) {
+        mainView.showProgress();
+        Subscription getIdCancelOrdersSubscription = mainInteractor.getDriverCancelOrder(id)
+                .compose(rxSchedulersAbs.getIOToMainTransformer())
+                .subscribe(this::handleDriverCancelOrder, this::handleError);
+        compositeSubscription.add(getIdCancelOrdersSubscription);
+    }
+
     private void setFreeDriversToView(@NonNull FullDriverDataModel fullDriverDataModel) {
         mainView.showDrivers(fullDriverDataModel.toString());
     }
+
     private void handleGetClientTripsInfo(@NonNull String trips) {
         mainView.hideProgress();
         mainView.showClientTripsInfo(trips);
     }
+
     private void handleCreateOrder(@NonNull int id) {
         mainView.hideProgress();
         mainView.showIdNewOrder(id);
@@ -110,6 +148,26 @@ public class MainPresenterImpl implements MainPresenter {
         mainView.hideProgress();
         mainView.showStatusOfClientOrders(String.valueOf(response.getResult().getMessages().get(0).getCode1()));
     }
+
+    private void handleGetDriverTripsInfo(@NonNull String trips) {
+        mainView.hideProgress();
+        mainView.showDriversTripsInfo(trips);
+    }
+
+    private void handleAgreeDriverToOrder(@NonNull int trips) {
+        mainView.hideProgress();
+        mainView.showDriverAgreeToOrder(trips);
+    }
+
+    private void handleDisagreeDriverToOrder(@NonNull int trips) {
+        mainView.hideProgress();
+        mainView.showDriverDisagreeToOrder(trips);
+    }
+    private void handleDriverCancelOrder(@NonNull int trips) {
+        mainView.hideProgress();
+        mainView.showDriverCancelOrders(trips);
+    }
+
     private void handleError(Throwable throwable) {
         mainView.hideProgress();
         mainView.showError(throwable.getLocalizedMessage());

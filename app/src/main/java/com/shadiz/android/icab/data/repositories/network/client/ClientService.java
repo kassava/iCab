@@ -8,13 +8,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.rate_order.TripRaterRequest;
 import com.shadiz.android.icab.data.repositories.network.client.models.request.trip_info.ClientTripsInfoRequest;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.NewOrderCreatorModelResponse;
-import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
-import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.order.CanceledOrderResponseModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.rate_after_trip.ClientNewOrderCreatorResponseModel;
+import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponseModel;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageRequestModel;
 import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
+import com.shadiz.android.icab.data.repositories.network.driver.models.request.current_order.StatusOrderModelRequest;
 
 import javax.inject.Inject;
 
@@ -40,7 +40,7 @@ public class ClientService {
      * @param tripModelRequest
      * @return
      */
-    public Call<NewOrderCreatorModelResponse> getNewTripId(OrderModelRequest tripModelRequest) {
+    public Call<ClientNewOrderCreatorResponseModel> getNewTripId(OrderModelRequest tripModelRequest) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         Log.d("ClientService", gson.toJson(tripModelRequest.getMessage()));
@@ -53,7 +53,7 @@ public class ClientService {
      * @param cancelOrderModelRequest
      * @return
      */
-    public Call<CanceledOrderModelResponse> getIdCanceledOrder(CancelOrderRequest cancelOrderModelRequest) {
+    public Call<CanceledOrderResponseModel> getIdCanceledOrder(StatusOrderModelRequest cancelOrderModelRequest) {
         return clientApi.getIdCanceledOrder(cancelOrderModelRequest.getDevice_uuid(), cancelOrderModelRequest.getLogin(), cancelOrderModelRequest.getDevice_platform(), new Gson().toJson(cancelOrderModelRequest.getMessage()));
     }
 
@@ -63,7 +63,7 @@ public class ClientService {
      * @param messageSyncModelRequest
      * @return
      */
-    public Call<SyncMessageModelResponse> getStatusClientOrders(SyncMessageModelRequest messageSyncModelRequest) {
+    public Call<SyncMessageModelResponse> getStatusClientOrders(SyncMessageRequestModel messageSyncModelRequest) {
         return clientApi.getStatusOrders(messageSyncModelRequest.getDate_from(), messageSyncModelRequest.getDevice_uuid(), messageSyncModelRequest.getLogin(), messageSyncModelRequest.getDevice_platform());
     }
 
@@ -73,7 +73,7 @@ public class ClientService {
      * @param tripRaterRequest
      * @return
      */
-    public Call<NewOrderCreatorModelResponse> setRateDriverAfterTrip(TripRaterRequest tripRaterRequest) {
+    public Call<ClientNewOrderCreatorResponseModel> setRateDriverAfterTrip(TripRaterRequest tripRaterRequest) {
         return clientApi.setRateDriverAfterTrip(tripRaterRequest.getDevice_uuid(), tripRaterRequest.getLogin(), tripRaterRequest.getDevice_platform(), new Gson().toJson(tripRaterRequest.getMessage()));
     }
 
@@ -81,7 +81,7 @@ public class ClientService {
      * @param clientTripsInfoRequest
      * @return
      */
-    public Call<TripInfoResponse> getClientTripsInfo(ClientTripsInfoRequest clientTripsInfoRequest) {
-        return clientApi.getClientTripsInfo(clientTripsInfoRequest.getDevice_uuid(), clientTripsInfoRequest.getLogin(), clientTripsInfoRequest.getDevice_platform(), new Gson().toJson(clientTripsInfoRequest.getTripFilter()));
+    public Call<TripInfoResponseModel> getClientTripsInfo(ClientTripsInfoRequest clientTripsInfoRequest) {
+        return clientApi.getClientTripsInfo(clientTripsInfoRequest.getDevice_uuid(), clientTripsInfoRequest.getLogin(), clientTripsInfoRequest.getDevice_platform(), clientTripsInfoRequest.getTripFilter());
     }
 }

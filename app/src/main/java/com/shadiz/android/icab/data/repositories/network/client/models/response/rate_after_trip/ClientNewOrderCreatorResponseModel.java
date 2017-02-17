@@ -9,7 +9,7 @@ import com.shadiz.android.icab.data.repositories.network.client.models.response.
  * Created by OldMan on 05.02.2017.
  */
 
-public class NewOrderCreatorModelResponse extends BaseResponse {
+public class ClientNewOrderCreatorResponseModel extends BaseResponse {
     @SerializedName("result")
     @Expose
     private OrderCreatorResult result;

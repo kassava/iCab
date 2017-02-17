@@ -4,10 +4,10 @@ package com.shadiz.android.icab.data.repositories.network.common.request;
  * Created by OldMan on 04.02.2017.
  */
 
-public class DeviceModelRequest {
+public class DeviceRequestModel {
     private String device_uuid, login, device_platform;
 
-    public DeviceModelRequest(String device_uuid, String login, String device_platform) {
+    public DeviceRequestModel(String device_uuid, String login, String device_platform) {
         this.device_uuid = device_uuid;
         this.login = login;
         this.device_platform = device_platform;

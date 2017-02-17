@@ -12,10 +12,15 @@ public interface MainView {
 
     void showDrivers(String driversInfo); // show drivers in log
 
-    void showClientTripsInfo(String id);
+    void showClientTripsInfo(String info);
     void showIdNewOrder(int id);
     void showIdCanceledOrder(int id);
     void showStatusOfClientOrders(String order);
 
+    void showDriversTripsInfo(String info);
     void showStatusOfDriverOrders(String order);
+    void showDriverAgreeToOrder(int order);
+    void showDriverDisagreeToOrder(int order);
+
+    void showDriverCancelOrders(int trips);
 }

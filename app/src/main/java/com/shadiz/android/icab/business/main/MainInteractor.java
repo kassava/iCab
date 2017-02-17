@@ -1,11 +1,7 @@
 package com.shadiz.android.icab.business.main;
 
-import com.shadiz.android.icab.data.repositories.network.client.models.response.trip_info.TripInfoResponse;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.CancelOrderRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.order.OrderModelRequest;
-import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageModelRequest;
+import com.shadiz.android.icab.data.repositories.network.common.request.SyncMessageRequestModel;
 import com.shadiz.android.icab.data.repositories.network.common.response.message_sync.SyncMessageModelResponse;
-import com.shadiz.android.icab.ui.main.models.FullDriverDataModel;
 
 import rx.Observable;
 
@@ -19,7 +15,7 @@ public interface MainInteractor {
      * @return onError if PersonalInfo loading error was occurred in Repository,
      * onSuccess in other cases
      */
-    void getStatusMessages(SyncMessageModelRequest syncModel);
+    void getStatusMessages(SyncMessageRequestModel syncModel);
 
 
     Observable<String> getClientTripsInfo();
@@ -28,19 +24,19 @@ public interface MainInteractor {
      * Create new order
      * @return
      */
-    Observable<Integer> getTripId();
+    Observable<Integer> getClientTripId();
 
     /**
      * user want cancel order
      * @return
      */
-    Observable<Integer> getIdCanceledOrder(CharSequence id);
+    Observable<Integer> getClientIdCanceledOrder(CharSequence id);
 
     /**
      * The client receiver a status of orders
      * @return
      */
-    Observable<SyncMessageModelResponse> getStatusOfClientOrders();
+    Observable<SyncMessageModelResponse> getClientStatusOfOrders();
 
 
     /**
@@ -49,4 +45,27 @@ public interface MainInteractor {
      */
     Observable<SyncMessageModelResponse> getStatusOfDriversOrders();
 
+    /**
+     * The driver receives a list of orders
+     * @return
+     */
+    Observable<String> getDriverTripsInfo();
+
+    /**
+     * The driver has agree to order
+     * @return
+     */
+    Observable<Integer> getDriverAgreeToOrder(CharSequence id);
+
+    /**
+     * The driver has disagree to order
+     * @return
+     */
+    Observable<Integer> getDriverDisagreeToOrder(CharSequence id);
+
+    /**
+     * The driver has cancel to order
+     * @return
+     */
+    Observable<Integer> getDriverCancelOrder(CharSequence id);
 }

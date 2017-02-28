@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.shadiz.android.icab.R;
 import com.shadiz.android.icab.dagger.Injector;
 import com.shadiz.android.icab.dagger.main.MainModule;
+import com.shadiz.android.icab.data.realm.models.RealmDriverInfoModel;
 import com.shadiz.android.icab.data.realm.table.ClientTable;
 import com.shadiz.android.icab.data.repositories.RealmRepo;
 import com.shadiz.android.icab.ui.main.presenter.MainPresenter;
@@ -45,6 +46,10 @@ public class MainFragment extends Fragment implements MainView {
         int id = realmRepo.getCarId();
         realmRepo.setClientKey(ClientTable.LAST_SELECTED_DRIVER, "dafffff");
         String driver = realmRepo.getClientKey(ClientTable.LAST_SELECTED_DRIVER);
+
+        RealmDriverInfoModel realmDriverInfoModel = new RealmDriverInfoModel();
+        realmDriverInfoModel.setName("ghjf");
+        String  str = realmDriverInfoModel.getName();
     }
 
     @Override
